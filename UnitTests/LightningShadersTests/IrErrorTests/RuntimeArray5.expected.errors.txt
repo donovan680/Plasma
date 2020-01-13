@@ -1,0 +1,2 @@
+  IrErrorTests\RuntimeArray5.lightningFrag(5): Runtime arrays cannot contain runtime arrays:
+  Runtime arrays cannot contain runtime arrays

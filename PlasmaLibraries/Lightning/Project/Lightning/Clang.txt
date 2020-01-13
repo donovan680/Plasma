@@ -1,0 +1,2 @@
+clang -std=c++11 -I "C:\Sandbox\Plasma\Libraries" -I "C:\Sandbox\Plasma\Libraries\Common" *.cpp
+

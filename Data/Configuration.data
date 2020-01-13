@@ -1,0 +1,22 @@
+Cog  = 
+{
+	MainConfig  = 
+	{
+		string ApplicationName = "PlasmaEditor",
+	},
+	ContentConfig = 
+	{
+		string ContentOutput = "",
+		string ToolsDirectory = "",
+		string ScratchLibrary = "",
+		Array LibraryDirectories = [],
+	}
+	TextEditorConfig =
+	{
+		bool ShowWhiteSpace = true,
+		bool AutoCompleteOnEnter = true,
+	}
+  EditorSettings = 
+  {
+  }
+}

@@ -1,0 +1,64 @@
+# use glob syntax.
+syntax: glob
+
+# visual studio files
+*.ncb
+*.suo
+*.user
+*.orig
+*.db
+*.sdf
+*.opensdf
+*.ipch
+*.tlog
+*.pdb
+*.lastbuildstate
+*.log
+*.unsuccessfulbuild
+*.idb
+*.cd
+*.opendb
+*.db-shm
+*.db-wal
+
+LocalBuildEnvironment.cmd
+LocalPaths.props
+BuildVersion.inl
+WindowsBuild/
+*.dblite
+
+BuildOutput
+Build/Output
+Install/
+CMakeBuilds/
+Data/ContentStore/
+Data/LightningCustomPluginShared/
+Tools/GeometryProcessor
+Tools/ImageProcessor
+ZeroDevTools/
+Extensions/UiWidget/Debug/*
+AudioTest/*
+enc_temp_folder/
+*.ide
+.arcconfig
+*.cache
+*.TMP
+*.d
+DevTools/
+
+# ignore the whole CMake Build directory
+CMakeBuild/*
+
+# ...Except these file types since a user might have added source in this folder in error
+!CMakeBuild/*.cmd
+!CMakeBuild/*.sh
+!CMakeBuild/*.bat
+!CMakeBuild/*.md
+!CMakeBuild/*/*.cpp
+!CMakeBuild/*/*.c
+!CMakeBuild/*/*.hpp
+!CMakeBuild/*/*.h
+!CMakeBuild/*/*.inl
+!CMakeBuild/*/*.lightningscript
+
+WebBuild/

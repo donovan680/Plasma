@@ -1,0 +1,4 @@
+  IrErrorTests\RequiredExecutionModels\Intrinsics\SampledImplicitLod\SampleImplicitLodSampledImage2d.lightningFrag(5): Invalid shader stage combination
+  'SampleImplicitLodSampledImage2d.Main' requires shader stage Vertex but references 'ShaderIntrinsics.SampleImplicitLod' which requires stage Pixel
+  IrErrorTests\RequiredExecutionModels\Intrinsics\SampledImplicitLod\SampleImplicitLodSampledImage2d.lightningFrag(7) in Main:
+

@@ -1,0 +1,2 @@
+  IrErrorTests\Attributes\Compute\BadCompute2.lightningFrag(2): Parameter 'localSizeX' must be in the range of [1, 128].:
+  Parameter 'localSizeX' must be in the range of [1, 128].

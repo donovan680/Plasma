@@ -1,0 +1,431 @@
+[Version:1]
+Level 
+{
+	Cog [ContextId:1]
+	{
+		var Name = "LevelSettings"
+	}
+	Cog [ContextId:2]
+	{
+		var Name = "Renderer"
+		DeferredRenderer 
+		{
+			var GeometryDebug = GeometryValue.None
+			var EditorDebugDraw = true
+			var GameDebugDraw = true
+			var RenderDiffuse = true
+			var RenderSpecular = true
+			var RenderSkybox = true
+			var Skybox = "5822dec85e380cf1:SimpleSkybox"
+			var ClearColor = Real4{0, 0, 0, 1}
+			var DirectLighting = true
+			var IndirectLighting = true
+			var IndirectIntensity = 1
+			var ToneMap = true
+		}
+		Ssao 
+		{
+			var Active = true
+			var Radius = 1
+			var Intensity = 1
+			var BlurDepthThreshold = 0.0500000007
+			var DebugBuffer = false
+		}
+		Bloom 
+		{
+			var Active = true
+			var Intensity = 0.100000001
+			var Threshold = 1
+			var Bloom1 = true
+			var Bloom2 = true
+			var Bloom3 = true
+			var Bloom4 = true
+			var Bloom5 = true
+			var DebugBuffer = false
+		}
+	}
+	Cog [ContextId:3]
+	{
+		var Name = "EditorCamera"
+		Transform 
+		{
+			var Translation = Real3{3.80595112, 4.85688114, -8.79505348}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{-0.0292735286, 0.968966305, 0.141356751, 0.200662896}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = false
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 200
+			var PerspectiveMode = PerspectiveMode.Perspective
+			var FieldOfView = 60
+			var Size = 20
+		}
+		EditorCameraController 
+		{
+			var ControlMode = ControlMode.Orbit
+			var Previous3DMode = ControlMode.Orbit
+			var LookDistance = 10
+			var VerticalAngle = 0.28972438
+			var HorizontalAngle = -9.01637173
+			var LookTarget = Real3{0, 2, 0}
+			var MoveSensitivity = 1
+		}
+	}
+	Cog [InheritId:"4de020863e85dcdf:Cube"][ContextId:4]
+	{
+		BoxCollider 
+		{
+			var Offset = Real3{47.1221046, -40.920742, -18.9077435}
+		}
+		RigidBody [LocallyRemoved]
+		{
+		}
+		Model [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"4faa6050b86884ec:DefaultArchetype"][ContextId:5]
+	{
+		Model 
+		{
+			var OverrideBoundingBox = false
+		}
+	}
+	Cog [InheritId:"4de020863e85f0c7:Cylinder"][ContextId:6]
+	{
+		Transform 
+		{
+			var LocalTranslation = Real3{10.5059986, 41.5463753, -27.7306442}
+		}
+		RigidBody [LocallyRemoved]
+		{
+		}
+		Model [LocallyRemoved]
+		{
+		}
+		CylinderCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"4faa6050b86884ec:DefaultArchetype"][ContextId:7]
+	{
+		Model [LocallyRemoved]
+		{
+		}
+		Transform [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"582c3e203dd864d9:Sprite"][ContextId:8]
+	{
+		Transform 
+		{
+			var WorldRotation = Quaternion{-0.220278218, 0.466250718, 0.831763089, -0.20556806}
+		}
+		Sprite [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"4de020863e85dcdf:Cube"][ContextId:9]
+	{
+		Transform 
+		{
+			var Translation = Real3{14.8792982, 3.03201675, 4.6769619}
+			var LocalScale = Real3{9.99999975e-05, 9.99999975e-05, 9.99999975e-05}
+		}
+		BoxCollider 
+		{
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		}
+		Model [LocallyRemoved]
+		{
+		}
+		RigidBody [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5823bb5ebee4190d:PointLight"][ContextId:10]
+	{
+		SelectionIcon 
+		{
+			var Visible = false
+		}
+		Model 
+		{
+			var VisibilityEvents = false
+			var OverrideBoundingBox = true
+		}
+		PointLight [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5823b88750cbcfe3:DirectionalLight"][ContextId:11]
+	{
+		Transform 
+		{
+			var LocalTranslation = Real3{18.4591236, -28.6675625, 34.7468491}
+		}
+		Model [LocallyRemoved]
+		{
+		}
+		DirectionalLight [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"582c3e203dd864d9:Sprite"][ContextId:12]
+	{
+		Sprite [LocallyRemoved]
+		{
+		}
+		Transform [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"4de020863e85f0c7:Cylinder"][ContextId:13]
+	{
+		Model 
+		{
+			var Visible = true
+		}
+		CylinderCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+		}
+	}
+	Cog [InheritId:"526cb806ab2a41b8:DefaultTile"][ContextId:14]
+	{
+		Transform [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5b3a1ae90a4216aa:SpotLight"][ContextId:15]
+	{
+	}
+	Cog [InheritId:"5772df7ce598bf0a:Camera"][ContextId:16]
+	{
+		CameraViewport 
+		{
+			var RenderInGame = false
+		}
+	}
+	Cog [InheritId:"4de020863e85dcdf:Cube"][ContextId:17]
+	{
+		RigidBody 
+		{
+			var AllowSleep = false
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+		}
+		Model [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"4de020863e85f0c7:Cylinder"][ContextId:18]
+	{
+		CylinderCollider 
+		{
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		}
+		Model [LocallyRemoved]
+		{
+		}
+		RigidBody [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5b3a1a9a120a3b0a:SpotLightShadows"][ContextId:19]
+	{
+		Model 
+		{
+			var LocalAabbCenter = Real3{-2.27515411, -11.1255226, 48.1658401}
+		}
+	}
+	Cog [InheritId:"582c34bf58da69e9:SpriteText"][ContextId:20]
+	{
+		SpriteText [LocallyRemoved]
+		{
+		}
+		Transform [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5b3a1ae90a4216aa:SpotLight"][ContextId:21]
+	{
+		SelectionIcon 
+		{
+			var OverrideSelections = true
+		}
+	}
+	Cog [InheritId:"59052e6cb6965b24:DirectionalLightShadows"][ContextId:22]
+	{
+		SelectionIcon 
+		{
+		}
+		CameraViewport [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"4de020863e85dcdf:Cube"][ContextId:23]
+	{
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = false
+		}
+	}
+	Cog [InheritId:"4de020863e85dcdf:Cube"][ContextId:24]
+	{
+		Model 
+		{
+			var LocalAabbHalfExtents = Real3{34.0266113, 0.00499999989, 0.00499999989}
+		}
+		RigidBody 
+		{
+			var AllowSleep = true
+			var Asleep = true
+		}
+	}
+	Cog [InheritId:"4de020863e85f0c7:Cylinder"][ContextId:25]
+	{
+	}
+	Cog [InheritId:"5b3a1ae90a4216aa:SpotLight"][ContextId:26]
+	{
+		SelectionIcon [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"582c34bf58da69e9:SpriteText"][ContextId:27]
+	{
+		SpriteText [LocallyRemoved]
+		{
+		}
+		Transform [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5823bb5ebee4190d:PointLight"][ContextId:28]
+	{
+		PointLight 
+		{
+			var LightRadiusValue = 31.6126022
+		}
+	}
+	Cog [InheritId:"582c34bf58da69e9:SpriteText"][ContextId:29]
+	{
+		Transform 
+		{
+			var WorldRotation = Quaternion{-0.164221913, 0.789550126, 0.555936217, 0.201436535}
+		}
+		SpriteText [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"4de020863e85f0c7:Cylinder"][ContextId:30]
+	{
+	}
+	Cog [InheritId:"526cb806ab2a41b8:DefaultTile"][ContextId:31]
+	{
+		Transform 
+		{
+			var Translation = Real3{49.4262505, -6.00146341, -13.7958918}
+		}
+	}
+	Cog [InheritId:"5772df7ce598bf0a:Camera"][ContextId:32]
+	{
+		Transform 
+		{
+			var LocalTranslation = Real3{-14.3574324, 37.1181374, -6.32801342}
+		}
+	}
+	Cog [InheritId:"5b3a1ae90a4216aa:SpotLight"][ContextId:33]
+	{
+	}
+	Cog [InheritId:"5823b88750cbcfe3:DirectionalLight"][ContextId:34]
+	{
+	}
+	Cog [InheritId:"59052e6cb6965b24:DirectionalLightShadows"][ContextId:35]
+	{
+		Model 
+		{
+			var VisibilityEvents = false
+		}
+	}
+	Cog [InheritId:"4faa6050b86884ec:DefaultArchetype"][ContextId:36]
+	{
+	}
+	Cog [InheritId:"526cb806ab2a41b8:DefaultTile"][ContextId:37]
+	{
+		Transform [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5b3a1ae90a4216aa:SpotLight"][ContextId:38]
+	{
+	}
+	Cog [InheritId:"59052e6cb6965b24:DirectionalLightShadows"][ContextId:39]
+	{
+	}
+	Cog [InheritId:"59052e6cb6965b24:DirectionalLightShadows"][ContextId:40]
+	{
+		ShadowRenderer 
+		{
+			var NormalOffsetBias = 26.9493713
+		}
+	}
+	Cog [InheritId:"526cb806ab2a41b8:DefaultTile"][ContextId:41]
+	{
+	}
+	Cog [InheritId:"5b3a1ae90a4216aa:SpotLight"][ContextId:42]
+	{
+	}
+	Cog [InheritId:"4de020863e85dcdf:Cube"][ContextId:43]
+	{
+	}
+}

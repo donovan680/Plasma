@@ -1,0 +1,2 @@
+  IrErrorTests\StructDestructor.lightningFrag(2): Destructors are not supported in shaders:
+  Destructors are not supported in shaders

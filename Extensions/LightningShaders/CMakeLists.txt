@@ -1,0 +1,96 @@
+################################################################################
+# Generated using Joshua T. Fisher's 'CMake Builder'.
+# Link: https://github.com/playmer/CmakeBuilder 
+################################################################################
+# commented out since we have to ignore some files in this folder at the moment
+#include(${CMAKE_CURRENT_LIST_DIR}/Generated.cmake)
+
+target_sources(LightningShaders
+  PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}/ArithmeticInstructions.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/BitInstructions.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/CommonInstructions.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ConversionInstructions.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/CycleDetection.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/EntryPointGeneration.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ExtensionLibrary.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/FixedArray.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/Glsl450Extensions.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LibraryTranslationHelpers.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LogicalInstructions.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/OperatorKeys.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/Precompiled.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderAttributes.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderByteStream.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderCodeBuilder.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderErrors.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderImageIntrinsics.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderIntrinsics.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderIntrinsicTypes.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderIRLibraryTranslation.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/SimpleLightningParser.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/SimpleLightningShaderIRGenerator.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/SpirVSpecializationConstantPass.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/StageRequirementsGatherer.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/TypeDependencyCollector.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderGlslBackend.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderIntrinsicsStaticLightningLibrary.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRCompositor.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRCore.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRExtendedTypes.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRLibrary.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRMeta.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRPasses.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRProject.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRReflection.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRShared.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderSpirVBinaryBackend.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShadersStandard.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRTranslationPass.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVDisassemblerBackend.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVFrontEnd.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVFrontEndValidation.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVSettings.cpp
+#  PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/BaseShaderIRTranslator.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/CommonInstructions.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/CycleDetection.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/EntryPointGeneration.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ExtensionLibrary.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ForwardDeclarations.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/GLSL.std.450.h
+    ${CMAKE_CURRENT_LIST_DIR}/LibraryTranslationHelpers.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/OperatorKeys.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/Precompiled.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderAttributes.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderByteStream.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderCodeBuilder.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderErrors.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderImageIntrinsics.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderIntrinsicTypes.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderIRLibraryTranslation.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/SimpleLightningParser.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/SimpleLightningShaderIRGenerator.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/SpirVHelpers.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/SpirVSpecializationConstantPass.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/StageRequirementsGatherer.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/TypeDependencyCollector.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderGlslBackend.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/ShaderIntrinsicsStaticLightningLibrary.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRCompositor.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRCore.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRExtendedTypes.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRLibrary.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRMeta.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRPasses.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRProject.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRReflection.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRShared.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderIRTranslationPass.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShaderSpirVBinaryBackend.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningShadersStandard.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVDisassemblerBackend.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVFrontEnd.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVFrontEndValidation.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVSettings.hpp
+)

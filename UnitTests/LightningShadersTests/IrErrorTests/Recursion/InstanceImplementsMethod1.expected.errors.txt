@@ -1,0 +1,6 @@
+  IrErrorTests\Recursion\InstanceImplementsMethod1.lightningFrag(6) in Main: Recursion is illegal in shaders
+  Object calls itself via the stack:
+  IrErrorTests\Recursion\InstanceImplementsMethod1.lightningFrag(6) in Main:
+  IrErrorTests\Recursion\InstanceImplementsMethod1.lightningFrag(13) in Run:
+  IrErrorTests\Recursion\InstanceImplementsMethod1.lightningFrag(20) in Get:
+

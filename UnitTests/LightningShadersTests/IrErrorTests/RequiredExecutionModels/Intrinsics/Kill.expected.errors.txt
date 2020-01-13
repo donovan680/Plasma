@@ -1,0 +1,4 @@
+  IrErrorTests\RequiredExecutionModels\Intrinsics\Kill.lightningFrag(4): Invalid shader stage combination
+  'FWidthReal2.Main' requires shader stage Vertex but references 'ShaderIntrinsics.Kill' which requires stage Pixel
+  IrErrorTests\RequiredExecutionModels\Intrinsics\Kill.lightningFrag(6) in Main:
+

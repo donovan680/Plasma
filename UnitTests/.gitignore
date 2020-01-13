@@ -1,0 +1,5 @@
+# use glob syntax.
+syntax: glob
+
+# Ignores for the lightning compositor tests
+*.generated.*

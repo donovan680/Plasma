@@ -1,0 +1,2 @@
+  IrErrorTests\Attributes\BadGeometry1.lightningFrag(5): Not enough parameters to attribute 'Geometry'. Signature must be 'maxVertices : Integer':
+  Not enough parameters to attribute 'Geometry'. Signature must be 'maxVertices : Integer'

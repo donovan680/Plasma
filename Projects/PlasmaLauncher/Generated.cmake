@@ -1,0 +1,57 @@
+################################################################################
+# Generated using Joshua T. Fisher's 'CMake Builder'.
+# Link: https://github.com/playmer/CmakeBuilder 
+################################################################################
+target_sources(PlasmaLauncher
+  PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncher/Main.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncher/Precompiled.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncher/Precompiled.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncher/WinMain.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/ActiveProjectMenu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/ActiveProjectMenu.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/BuildsMenu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/BuildsMenu.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/BuildStatus.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/BuildStatus.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/DeveloperNotes.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/DeveloperNotes.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/DiscoverMenu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/DiscoverMenu.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Eula.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Eula.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/ExtraModals.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/ExtraModals.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/ForwardDeclarations.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Launcher.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Launcher.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherComponents.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherComponents.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherCrashCallbacks.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherCrashCallbacks.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherDllStandard.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherDllStandard.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherStartup.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherStartup.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherTasks.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherTasks.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherWindow.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/LauncherWindow.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Main.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Main.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/NewProjectMenu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/NewProjectMenu.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Precompiled.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Precompiled.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/ProjectCache.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/ProjectCache.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/RecentProjectsMenu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/RecentProjectsMenu.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/SettingsMenu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/SettingsMenu.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Standalone.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/Standalone.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/TagFiltering.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/VersionSelector.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/PlasmaLauncherSharedLibrary/VersionSelector.hpp
+)

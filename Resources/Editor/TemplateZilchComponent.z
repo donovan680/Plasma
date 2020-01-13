@@ -1,0 +1,11 @@
+class RESOURCE_NAME_ : LightningComponent
+{
+	function Initialize(init : CogInitializer)
+	{
+		//Plasma.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+	}
+
+	function OnLogicUpdate(event : UpdateEvent)
+	{
+	}
+}

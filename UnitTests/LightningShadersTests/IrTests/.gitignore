@@ -1,0 +1,6 @@
+# use glob syntax.
+syntax: glob
+
+# Ignores for the lightning compositor tests
+*.spv
+*spv.glsl.txt

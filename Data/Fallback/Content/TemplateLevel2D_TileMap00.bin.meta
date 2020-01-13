@@ -1,0 +1,13 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "TemplateLevel2D_TileMap00"
+		var ResourceId = 0x5e1a4752e17ce266
+		var LoaderType = "TileMapSource"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = "5243be0c516d92e6:TemplateLevel2D"
+	}
+}

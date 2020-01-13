@@ -1,0 +1,7 @@
+[Pixel]
+struct RESOURCE_NAME_
+{
+	function Main()
+	{
+	}
+}

@@ -1,0 +1,7 @@
+  IrErrorTests\RequiredExecutionModels\InstanceFields1.lightningFrag(4): Invalid shader stage combination
+  'InstanceFields1.Main' requires shader stage Vertex but references 'ShaderIntrinsics.Kill' which requires stage Pixel
+  IrErrorTests\RequiredExecutionModels\InstanceFields1.lightningFrag(6) in Main:
+  IrErrorTests\RequiredExecutionModels\InstanceFields1.lightningFrag(10):
+  IrErrorTests\RequiredExecutionModels\InstanceFields1.lightningFrag(12):
+  IrErrorTests\RequiredExecutionModels\InstanceFields1.lightningFrag(17) in GetValue:
+

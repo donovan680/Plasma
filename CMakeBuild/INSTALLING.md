@@ -1,0 +1,1 @@
+Run one of the scripts in PlasmaCore or, if you know what you are doing, invoke the cmake command from this directory.

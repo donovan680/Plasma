@@ -1,0 +1,2 @@
+  IrErrorTests\Geometry4.lightningFrag(13) in Main: Argument 1 must be an input stream type.:
+  Argument 1 must be an input stream type.
