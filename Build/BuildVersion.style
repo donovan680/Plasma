@@ -1,1 +1,0 @@
-changeset = '\n#define PlasmaRevisionId {rev}\n#define PlasmaShortChangeSet {node|short}\n#define PlasmaChangeSet {node}\n#define PlasmaChangeSetDate "{date|shortdate}"\n'

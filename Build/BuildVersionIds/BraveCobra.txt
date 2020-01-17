@@ -1,4 +1,0 @@
-#define PlasmaExperimentalBranchName "BraveCobra"
-#define PlasmaMajorVersion 0
-#define PlasmaMinorVersion 0
-#define PlasmaPatchVersion 0
