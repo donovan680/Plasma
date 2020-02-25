@@ -260,15 +260,19 @@ plasma_subfolder_source_group(${plasma_core_path} Systems Sound "")
 plasma_subfolder_source_group(${plasma_core_path} Systems Startup "")
 plasma_subfolder_source_group(${plasma_core_path} Systems LightningScript "")
 
-################################################################################
-# Post build steps
-################################################################################
-add_custom_command(
-    TARGET Engine PRE_BUILD    
-    COMMAND ${CMAKE_COMMAND} 
-    # options
-    -DPLASMA_CORE_ROOT="${plasma_core_path}"
-    # command
-    -P ${cmake_utilities_dir}/Update_Build_Version_Script.cmake
-)
+
+# Currently causes compile errors
+# TODO: investigate
+
+# ################################################################################
+# # Post build steps
+# ################################################################################
+# add_custom_command(
+#     TARGET Engine PRE_BUILD    
+#     COMMAND ${CMAKE_COMMAND} 
+#     # options
+#     -DPLASMA_CORE_ROOT="${plasma_core_path}"
+#     # command
+#     -P ${cmake_utilities_dir}/Update_Build_Version_Script.cmake
+# )
 
