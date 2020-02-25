@@ -81,8 +81,17 @@ Resource* AddNewResource(ResourceManager* resourceManager, ResourceAdd& resource
 
   String resourceExtension = resourceManager->mExtension;
 
-  if(resourceAdd.Library == NULL)
-    resourceAdd.Library = PL::gEditor->mProjectLibrary;
+  if (resourceAdd.Library == NULL)
+  {
+      if(PL::gEditor->mProjectLibrary == NULL)
+      {
+          DoNotifyWarning("No Project Loaded", "You are trying to load Plasma without a project, note that this can cuase unexpected behavior");
+          return nullptr;
+      }
+
+      resourceAdd.Library = PL::gEditor->mProjectLibrary;
+
+  }
 
   //Writable Check
 

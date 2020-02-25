@@ -25,8 +25,8 @@ LightningDefineType(PhysicsCar, builder, type)
   LightningBindFieldProperty(mGripScalar);
   LightningBindFieldProperty(mAntiLockBrakes);
   LightningBindFieldProperty(mTorqueGovernor);
-  LightningBindFieldProperty(mWheelFrictionSideRollCoef)->Add(new EditorSlider(0, 1, 0.001));
-  LightningBindFieldProperty(mWheelFrictionFrontRollCoef)->Add(new EditorSlider(0, 1, 0.001));
+  LightningBindFieldProperty(mWheelFrictionSideRollCoef)->Add(new EditorSlider(0.0f, 1.0f, 0.001f));
+  LightningBindFieldProperty(mWheelFrictionFrontRollCoef)->Add(new EditorSlider(0.0f, 1.0f, 0.001f));
 
   LightningBindGetterSetter(Steer);
   LightningBindGetterSetter(Gas);

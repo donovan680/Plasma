@@ -417,7 +417,7 @@ namespace Plasma
 			}
 			else
 			{
-				DoNotifyError("Failed to save", "Failed to create archetype content item");
+				DoNotifyWarning("Failed to save", "Failed to create archetype content item");
 				return false;
 			}
 

@@ -15,10 +15,10 @@ namespace Plasma
 namespace TagsUi
 {
 const cstr cLocation = "EditorUi/Controls/Tags";
-Tweakable(Vec4, BackgroundColor,   Vec4(0.65,0.65,0.65, 1), cLocation);
-Tweakable(Vec4, SearchIconBgColor, Vec4(1,1,1,1),           cLocation);
-Tweakable(Vec4, SearchIconColor,   Vec4(1,1,1,1),           cLocation);
-Tweakable(Vec4, SearchIconColorRight,   Vec4(1,1,1,1),      cLocation);
+Tweakable(Vec4, BackgroundColor,   Vec4(0.65f,0.65f,0.65f, 1.0f), cLocation);
+Tweakable(Vec4, SearchIconBgColor, Vec4(1.0f,1.0f,1.0f,1.0f),           cLocation);
+Tweakable(Vec4, SearchIconColor,   Vec4(1.0f,1.0f,1.0f,1.0f),           cLocation);
+Tweakable(Vec4, SearchIconColorRight,   Vec4(1.0f,1.0f,1.0f,1.0f),      cLocation);
 }
 
 namespace Events
