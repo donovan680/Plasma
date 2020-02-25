@@ -15,8 +15,6 @@ set(common_flags
     -Zc:wchar_t
     $<$<CONFIG:Debug>:-Zi>
     $<$<CONFIG:Release>:-Zi>
-    $<$<CONFIG:Debug>:-Gm>
-    $<$<CONFIG:Release>:-Gm->
     $<$<CONFIG:Debug>:-Od>
     $<$<CONFIG:Release>:-O2>
     -Zc:inline 
