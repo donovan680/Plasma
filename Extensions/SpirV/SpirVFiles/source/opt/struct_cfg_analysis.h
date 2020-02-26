@@ -17,13 +17,10 @@
 
 #include <unordered_map>
 
-#include "source/opt/function.h"
-#include "source/util/bit_vector.h"
+#include "ir_context.h"
 
 namespace spvtools {
 namespace opt {
-
-class IRContext;
 
 // An analysis that, for each basic block, finds the constructs in which it is
 // contained, so we can easily get headers and merge nodes.
@@ -63,14 +60,6 @@ class StructuredCFGAnalysis {
   // construct.
   uint32_t LoopMergeBlock(uint32_t bb_id);
 
-  // Returns the id of the continue block of the innermost loop construct
-  // that contains |bb_id|.  Return |0| if |bb_id| is not contained in any loop
-  // construct.
-  uint32_t LoopContinueBlock(uint32_t bb_id);
-
-  bool IsContinueBlock(uint32_t bb_id);
-  bool IsMergeBlock(uint32_t bb_id);
-
  private:
   // Struct used to hold the information for a basic block.
   // |containing_construct| is the header for the innermost containing
@@ -93,7 +82,6 @@ class StructuredCFGAnalysis {
   // A map from a basic block to the headers of its inner most containing
   // constructs.
   std::unordered_map<uint32_t, ConstructInfo> bb_to_construct_;
-  utils::BitVector merge_blocks_;
 };
 
 }  // namespace opt

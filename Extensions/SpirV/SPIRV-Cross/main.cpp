@@ -19,7 +19,6 @@
 #include "spirv_glsl.hpp"
 #include "spirv_hlsl.hpp"
 #include "spirv_msl.hpp"
-#include "spirv_parser.hpp"
 #include "spirv_reflect.hpp"
 #include <algorithm>
 #include <cstdio>
@@ -191,7 +190,7 @@ static vector<uint32_t> read_spirv_file(const char *path)
 	FILE *file = fopen(path, "rb");
 	if (!file)
 	{
-		fprintf(stderr, "Failed to open SPIR-V file: %s\n", path);
+		fprintf(stderr, "Failed to open SPIRV file: %s\n", path);
 		return {};
 	}
 
@@ -798,17 +797,10 @@ static int main_inner(int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 
-	auto spirv_file = read_spirv_file(args.input);
-	if (spirv_file.empty())
-		return EXIT_FAILURE;
-	Parser spirv_parser(move(spirv_file));
-
-	spirv_parser.parse();
-
 	// Special case reflection because it has little to do with the path followed by code-outputting compilers
 	if (!args.reflect.empty())
 	{
-		CompilerReflection compiler(move(spirv_parser.get_parsed_ir()));
+		CompilerReflection compiler(read_spirv_file(args.input));
 		compiler.set_format(args.reflect);
 		auto json = compiler.compile();
 		if (args.output)
@@ -824,13 +816,13 @@ static int main_inner(int argc, char *argv[])
 
 	if (args.cpp)
 	{
-		compiler.reset(new CompilerCPP(move(spirv_parser.get_parsed_ir())));
+		compiler = unique_ptr<CompilerGLSL>(new CompilerCPP(read_spirv_file(args.input)));
 		if (args.cpp_interface_name)
 			static_cast<CompilerCPP *>(compiler.get())->set_interface_name(args.cpp_interface_name);
 	}
 	else if (args.msl)
 	{
-		compiler.reset(new CompilerMSL(move(spirv_parser.get_parsed_ir())));
+		compiler = unique_ptr<CompilerMSL>(new CompilerMSL(read_spirv_file(args.input)));
 
 		auto *msl_comp = static_cast<CompilerMSL *>(compiler.get());
 		auto msl_opts = msl_comp->get_msl_options();
@@ -842,13 +834,13 @@ static int main_inner(int argc, char *argv[])
 		msl_comp->set_msl_options(msl_opts);
 	}
 	else if (args.hlsl)
-		compiler.reset(new CompilerHLSL(move(spirv_parser.get_parsed_ir())));
+		compiler = unique_ptr<CompilerHLSL>(new CompilerHLSL(read_spirv_file(args.input)));
 	else
 	{
 		combined_image_samplers = !args.vulkan_semantics;
 		if (!args.vulkan_semantics)
 			build_dummy_sampler = true;
-		compiler.reset(new CompilerGLSL(move(spirv_parser.get_parsed_ir())));
+		compiler = unique_ptr<CompilerGLSL>(new CompilerGLSL(read_spirv_file(args.input)));
 	}
 
 	if (!args.variable_type_remaps.empty())
@@ -984,13 +976,6 @@ static int main_inner(int argc, char *argv[])
 			hlsl_opts.point_size_compat = true;
 			hlsl_opts.point_coord_compat = true;
 		}
-
-		if (hlsl_opts.shader_model <= 30)
-		{
-			combined_image_samplers = true;
-			build_dummy_sampler = true;
-		}
-
 		hlsl->set_hlsl_options(hlsl_opts);
 	}
 
@@ -1105,20 +1090,20 @@ static int main_inner(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-int main(int argc, char *argv[])
-{
-#ifdef SPIRV_CROSS_EXCEPTIONS_TO_ASSERTIONS
-	return main_inner(argc, argv);
-#else
-	// Make sure we catch the exception or it just disappears into the aether on Windows.
-	try
-	{
-		return main_inner(argc, argv);
-	}
-	catch (const std::exception &e)
-	{
-		fprintf(stderr, "SPIRV-Cross threw an exception: %s\n", e.what());
-		return EXIT_FAILURE;
-	}
-#endif
-}
+//int main(int argc, char *argv[])
+//{
+//#ifdef SPIRV_CROSS_EXCEPTIONS_TO_ASSERTIONS
+//	return main_inner(argc, argv);
+//#else
+//	// Make sure we catch the exception or it just disappears into the aether on Windows.
+//	try
+//	{
+//		return main_inner(argc, argv);
+//	}
+//	catch (const std::exception &e)
+//	{
+//		fprintf(stderr, "SPIRV-Cross threw an exception: %s\n", e.what());
+//		return EXIT_FAILURE;
+//	}
+//#endif
+//}

@@ -69,49 +69,29 @@ uint32_t InstructionFolder::BinaryOperate(SpvOp opcode, uint32_t a,
     case SpvOp::SpvOpIMul:
       return a * b;
     case SpvOp::SpvOpUDiv:
-      if (b != 0) {
-        return a / b;
-      } else {
-        // Dividing by 0 is undefined, so we will just pick 0.
-        return 0;
-      }
+      assert(b != 0);
+      return a / b;
     case SpvOp::SpvOpSDiv:
-      if (b != 0u) {
-        return (static_cast<int32_t>(a)) / (static_cast<int32_t>(b));
-      } else {
-        // Dividing by 0 is undefined, so we will just pick 0.
-        return 0;
-      }
+      assert(b != 0u);
+      return (static_cast<int32_t>(a)) / (static_cast<int32_t>(b));
     case SpvOp::SpvOpSRem: {
       // The sign of non-zero result comes from the first operand: a. This is
       // guaranteed by C++11 rules for integer division operator. The division
       // result is rounded toward zero, so the result of '%' has the sign of
       // the first operand.
-      if (b != 0u) {
-        return static_cast<int32_t>(a) % static_cast<int32_t>(b);
-      } else {
-        // Remainder when dividing with 0 is undefined, so we will just pick 0.
-        return 0;
-      }
+      assert(b != 0u);
+      return static_cast<int32_t>(a) % static_cast<int32_t>(b);
     }
     case SpvOp::SpvOpSMod: {
       // The sign of non-zero result comes from the second operand: b
-      if (b != 0u) {
-        int32_t rem = BinaryOperate(SpvOp::SpvOpSRem, a, b);
-        int32_t b_prim = static_cast<int32_t>(b);
-        return (rem + b_prim) % b_prim;
-      } else {
-        // Mod with 0 is undefined, so we will just pick 0.
-        return 0;
-      }
+      assert(b != 0u);
+      int32_t rem = BinaryOperate(SpvOp::SpvOpSRem, a, b);
+      int32_t b_prim = static_cast<int32_t>(b);
+      return (rem + b_prim) % b_prim;
     }
     case SpvOp::SpvOpUMod:
-      if (b != 0u) {
-        return (a % b);
-      } else {
-        // Mod with 0 is undefined, so we will just pick 0.
-        return 0;
-      }
+      assert(b != 0u);
+      return (a % b);
 
     // Shifting
     case SpvOp::SpvOpShiftRightLogical: {

@@ -14,6 +14,7 @@
 
 #include "source/ext_inst.h"
 
+#include <cassert>
 #include <cstring>
 
 // DebugInfo extended instruction set.
@@ -84,6 +85,7 @@ spv_result_t spvExtInstTableGet(spv_ext_inst_table* pExtInstTable,
       *pExtInstTable = &kTable_1_0;
       return SPV_SUCCESS;
     default:
+      assert(0 && "Unknown spv_target_env in spvExtInstTableGet()");
       return SPV_ERROR_INVALID_TABLE;
   }
 }

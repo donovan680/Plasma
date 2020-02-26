@@ -14,11 +14,8 @@
 
 #include "source/opt/struct_cfg_analysis.h"
 
-#include "source/opt/ir_context.h"
-
 namespace {
 const uint32_t kMergeNodeIndex = 0;
-const uint32_t kContinueNodeIndex = 1;
 }
 
 namespace spvtools {
@@ -77,7 +74,6 @@ void StructuredCFGAnalysis::AddBlocksInFunction(Function* func) {
       }
 
       state.emplace_back(new_state);
-      merge_blocks_.Set(new_state.merge_node);
     }
   }
 }
@@ -102,26 +98,6 @@ uint32_t StructuredCFGAnalysis::LoopMergeBlock(uint32_t bb_id) {
   BasicBlock* header = context_->cfg()->block(header_id);
   Instruction* merge_inst = header->GetMergeInst();
   return merge_inst->GetSingleWordInOperand(kMergeNodeIndex);
-}
-
-uint32_t StructuredCFGAnalysis::LoopContinueBlock(uint32_t bb_id) {
-  uint32_t header_id = ContainingLoop(bb_id);
-  if (header_id == 0) {
-    return 0;
-  }
-
-  BasicBlock* header = context_->cfg()->block(header_id);
-  Instruction* merge_inst = header->GetMergeInst();
-  return merge_inst->GetSingleWordInOperand(kContinueNodeIndex);
-}
-
-bool StructuredCFGAnalysis::IsContinueBlock(uint32_t bb_id) {
-  assert(bb_id != 0);
-  return LoopContinueBlock(bb_id) == bb_id;
-}
-
-bool StructuredCFGAnalysis::IsMergeBlock(uint32_t bb_id) {
-  return merge_blocks_.Get(bb_id);
 }
 
 }  // namespace opt

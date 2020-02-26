@@ -63,7 +63,6 @@ spv_result_t ValidateAdjacency(ValidationState_t& _) {
         }
         break;
       case SpvOpLine:
-      case SpvOpNoLine:
         break;
       case SpvOpLoopMerge:
         adjacency_status = PHI_AND_VAR_INVALID;

@@ -206,7 +206,7 @@ function(launcher_post_build aTarget aPlasmaCoreDirectory aProjectDirectory aBui
 
     create_build_info(
         ${aTarget}
-        ${CurrentDirectory}/${aTarget}/${aTarget}
+        ${CurrentDirectory}
         ${aPlasmaCoreDirectory}
         ${aBuildOutputDirectory}
         ${aBuildOutputDirectory}

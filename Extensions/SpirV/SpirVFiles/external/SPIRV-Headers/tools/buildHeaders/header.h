@@ -41,7 +41,6 @@ namespace spv {
         ELangJSON,     // JSON
         ELangLua,      // Lua
         ELangPython,   // Python
-        ELangCSharp,   // CSharp
 
         ELangAll,      // print headers in all languages to files
     };

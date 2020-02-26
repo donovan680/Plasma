@@ -376,7 +376,6 @@ spv_result_t ValidateExecutionMode(ValidationState_t& _,
                            case SpvExecutionModelKernel:
                            case SpvExecutionModelGLCompute:
                              return true;
-                           case SpvExecutionModelTaskNV:
                            case SpvExecutionModelMeshNV:
                              return _.HasCapability(SpvCapabilityMeshShadingNV);
                            default:
@@ -385,8 +384,8 @@ spv_result_t ValidateExecutionMode(ValidationState_t& _,
                        })) {
         if (_.HasCapability(SpvCapabilityMeshShadingNV)) {
           return _.diag(SPV_ERROR_INVALID_DATA, inst)
-                 << "Execution mode can only be used with a Kernel, GLCompute, "
-                    "MeshNV, or TaskNV execution model.";
+                 << "Execution mode can only be used with a Kernel, GLCompute "
+                    "or MeshNV execution model.";
         } else {
           return _.diag(SPV_ERROR_INVALID_DATA, inst)
                  << "Execution mode can only be used with a Kernel or "

@@ -151,7 +151,7 @@ void LoopPeeling::InsertCanonicalInductionVariable(
       context_, &*insert_point,
       IRContext::kAnalysisDefUse | IRContext::kAnalysisInstrToBlockMapping);
   Instruction* uint_1_cst =
-      builder.GetIntConstant<uint32_t>(1, int_type_->IsSigned());
+      builder.Add32BitConstantInteger<uint32_t>(1, int_type_->IsSigned());
   // Create the increment.
   // Note that we do "1 + 1" here, one of the operand should the phi
   // value but we don't have it yet. The operand will be set latter.
@@ -162,7 +162,8 @@ void LoopPeeling::InsertCanonicalInductionVariable(
 
   canonical_induction_variable_ = builder.AddPhi(
       uint_1_cst->type_id(),
-      {builder.GetIntConstant<uint32_t>(0, int_type_->IsSigned())->result_id(),
+      {builder.Add32BitConstantInteger<uint32_t>(0, int_type_->IsSigned())
+           ->result_id(),
        GetClonedLoop()->GetPreHeaderBlock()->id(), iv_inc->result_id(),
        GetClonedLoop()->GetLatchBlock()->id()});
   // Connect everything.
@@ -421,7 +422,7 @@ void LoopPeeling::PeelBefore(uint32_t peel_factor) {
       context_, &*cloned_loop_->GetPreHeaderBlock()->tail(),
       IRContext::kAnalysisDefUse | IRContext::kAnalysisInstrToBlockMapping);
   Instruction* factor =
-      builder.GetIntConstant(peel_factor, int_type_->IsSigned());
+      builder.Add32BitConstantInteger(peel_factor, int_type_->IsSigned());
 
   Instruction* has_remaining_iteration = builder.AddLessThan(
       factor->result_id(), loop_iteration_count_->result_id());
@@ -483,7 +484,7 @@ void LoopPeeling::PeelAfter(uint32_t peel_factor) {
       context_, &*cloned_loop_->GetPreHeaderBlock()->tail(),
       IRContext::kAnalysisDefUse | IRContext::kAnalysisInstrToBlockMapping);
   Instruction* factor =
-      builder.GetIntConstant(peel_factor, int_type_->IsSigned());
+      builder.Add32BitConstantInteger(peel_factor, int_type_->IsSigned());
 
   Instruction* has_remaining_iteration = builder.AddLessThan(
       factor->result_id(), loop_iteration_count_->result_id());
@@ -676,8 +677,8 @@ std::pair<bool, Loop*> LoopPeelingPass::ProcessLoop(Loop* loop,
       InstructionBuilder(
           context(), loop->GetHeaderBlock(),
           IRContext::kAnalysisDefUse | IRContext::kAnalysisInstrToBlockMapping)
-          .GetIntConstant<uint32_t>(static_cast<uint32_t>(iterations),
-                                    is_signed),
+          .Add32BitConstantInteger<uint32_t>(static_cast<uint32_t>(iterations),
+                                             is_signed),
       canonical_induction_variable);
 
   if (!peeler.CanPeelLoop()) {

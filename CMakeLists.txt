@@ -16,23 +16,132 @@ set(CMAKE_CONFIGURATION_TYPES Debug Release RelWithDebInfo)
 project(Plasma CXX)
 
 ################################################################################
-# Do platform specific checks for chunks of the library paths
+# Set up options for project depending on verius PlasmaCore features
 ################################################################################
 
-## windows libraries
-#if( ${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-#    set(platform Windows)
-#    # 64 bit windows libraries
-#    if( ${CMAKE_SIZEOF_VOID_P} EQUAL 8 )
-#        message(FATAL_ERROR "64bit windows is currently not supported.")
-#    # 32 bit windows libraries
-#    else()
-#        set(bit x86)
-#    endif()
-## non-windows libraries
-#else()
-#    message(FATAL_ERROR "no other platforms are currently supported besides windows. Current Sys: ${CMAKE_SYSTEM_NAME}")
-#endif()
+# Helper for Option sets, this will turn any builds not turned on by the option
+# sets off.
+function(plasma_turn_remaining_builds_off)
+    # ZeroLibraries
+    option(PLASMA_BUILD_Common "Build the Common project" OFF)
+    option(PLASMA_BUILD_Dash "Build the Dash project" OFF)
+    option(PLASMA_BUILD_Geometry "Build the Geometry project" OFF)
+    option(PLASMA_BUILD_Meta "Build the Meta project" OFF)
+    option(PLASMA_BUILD_Platform "Build the Platform project" OFF)
+    option(PLASMA_BUILD_Serialization "Build the Serialization project" OFF)
+    option(PLASMA_BUILD_SpatialPartition "Build the SpatialPartition project" OFF)
+    option(PLASMA_BUILD_Support "Build the Support project" OFF)
+    option(PLASMA_BUILD_Lightning "Build the Lightning project" OFF)
+
+    # Projects
+    option(PLASMA_BUILD_PlasmaEditor "Build the PlasmaEditor project" OFF)
+    option(PLASMA_BUILD_PlasmaLauncher "Build the PlasmaLauncher project" OFF)
+    option(PLASMA_BUILD_PlasmaLauncherSharedLibrary "Build the PlasmaLauncherSharedLibrary project" OFF)
+    option(PLASMA_BUILD_BrowserSubProcess "Build the BrowserSubProcess project" OFF)
+
+    # Systems
+    option(PLASMA_BUILD_Content "Build the Content project" OFF)
+    option(PLASMA_BUILD_Engine "Build the Engine project" OFF)
+    option(PLASMA_BUILD_Graphics "Build the Graphics project" OFF)
+    option(PLASMA_BUILD_Networking "Build the Networking project" OFF)
+    option(PLASMA_BUILD_Physics "Build the Physics project" OFF)
+    option(PLASMA_BUILD_Sound "Build the Sound project" OFF)
+    option(PLASMA_BUILD_Startup "Build the Startup project" OFF)
+    option(PLASMA_BUILD_LightningScript "Build the LightningScript project" OFF)
+
+    # Extensions
+    option(PLASMA_BUILD_CodeTranslator "Build the CodeTranslator project" OFF)
+    option(PLASMA_BUILD_Editor "Build the Editor project" OFF)
+    option(PLASMA_BUILD_Gameplay "Build the Gameplay project" OFF)
+    option(PLASMA_BUILD_UiWidget "Build the UiWidget project" OFF)
+    option(PLASMA_BUILD_Widget "Build the Widget project" OFF)
+    option(PLASMA_BUILD_LightningShaders "Build the LightningShaders project" OFF)
+endfunction()
+
+###################################
+# Option Sets, these default off.
+###################################
+
+# Set up options sets, these will then set base options, these will all default 
+# to OFF.
+
+# If you only want to link against Lightning and the LightningShader extension
+# this option is for you.
+option(PLASMA_OPTIONSET_LightningShader "The LightningShaders option set, will turn on everything required for LightningShaders" OFF)
+
+if(${PLASMA_OPTIONSET_LightningShader})
+	option(PLASMA_OPTIONSET_Lightning "Build the Lightning project" ON)
+    option(PLASMA_BUILD_Geometry "Build the Geometry project" ON)
+	option(PLASMA_BUILD_LightningShaders "Build the LightningShaders project" ON)
+endif()
+
+# If you only want to link against Lightning this option is for you.
+option(PLASMA_OPTIONSET_Lightning "The Lightning option set, will turn on everything required for Lightning" OFF)
+
+if(${PLASMA_OPTIONSET_Lightning})
+    option(PLASMA_BUILD_Common "Build the Common project" ON)
+    option(PLASMA_BUILD_Lightning "Build the Lightning project" ON)
+endif()
+
+# Options are weird, and the first option set in the cmake hierarchy goes first
+# so if any of our optionsets are set, then we want to turn off any extra
+# builds/dependencies.
+if(${PLASMA_OPTIONSET_Lightning} OR
+   ${PLASMA_OPTIONSET_LightningShader})
+   plasma_turn_remaining_builds_off()
+endif()
+
+###################################
+# Base options, these default on.
+###################################
+#####################
+# PlasmaLibraries
+#####################
+option(PLASMA_BUILD_Common "Build the Common project" ON)
+option(PLASMA_BUILD_Dash "Build the Dash project" ON)
+option(PLASMA_BUILD_Geometry "Build the Geometry project" ON)
+option(PLASMA_BUILD_Meta "Build the Meta project" ON)
+option(PLASMA_BUILD_Platform "Build the Platform project" ON)
+option(PLASMA_BUILD_Serialization "Build the Serialization project" ON)
+option(PLASMA_BUILD_SpatialPartition "Build the SpatialPartition project" ON)
+option(PLASMA_BUILD_Support "Build the Support project" ON)
+option(PLASMA_BUILD_Lightning "Build the Lightning project" ON)
+
+#####################
+# External
+#####################
+
+
+#####################
+# Systems
+#####################
+option(PLASMA_BUILD_Content "Build the Content project" ON)
+option(PLASMA_BUILD_Engine "Build the Engine project" ON)
+option(PLASMA_BUILD_Graphics "Build the Graphics project" ON)
+option(PLASMA_BUILD_Networking "Build the Networking project" ON)
+option(PLASMA_BUILD_Physics "Build the Physics project" ON)
+option(PLASMA_BUILD_Sound "Build the Sound project" ON)
+option(PLASMA_BUILD_Startup "Build the Startup project" ON)
+option(PLASMA_BUILD_LightningScript "Build the LightningScript project" ON)
+
+
+#####################
+# Extensions
+#####################
+option(PLASMA_BUILD_CodeTranslator "Build the CodeTranslator project" ON)
+option(PLASMA_BUILD_Editor "Build the Editor project" ON)
+option(PLASMA_BUILD_Gameplay "Build the Gameplay project" ON)
+option(PLASMA_BUILD_UiWidget "Build the UiWidget project" ON)
+option(PLASMA_BUILD_Widget "Build the Widget project" ON)
+option(PLASMA_BUILD_LightningShaders "Build the LightningShaders project" ON)
+
+#####################
+# Projects
+#####################
+option(PLASMA_BUILD_PlasmaEditor "Build the PlasmaEditor project" ON)
+option(PLASMA_BUILD_PlasmaLauncher "Build the PlasmaLauncher project" ON)
+option(PLASMA_BUILD_PlasmaLauncherSharedLibrary "Build the PlasmaLauncherSharedLibrary project" ON)
+option(PLASMA_BUILD_BrowserSubProcess "Build the BrowserSubProcess project" ON)
 
 ################################################################################
 # Set up global variables
@@ -101,9 +210,9 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 add_subdirectory(External)
 
 # plasma source and related projects
-add_subdirectory(Extensions)
-add_subdirectory(Systems)
 add_subdirectory(PlasmaLibraries)
+add_subdirectory(Systems)
+add_subdirectory(Extensions)
 add_subdirectory(Projects)
 
 if (generate_with_unit_tests)
@@ -115,5 +224,7 @@ if (generate_with_unit_tests)
     endif()
 endif()
 
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT PlasmaEditor) 
+if (PLASMA_BUILD_PlasmaEditor)
+    set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT PlasmaEditor)
+endif()
 
