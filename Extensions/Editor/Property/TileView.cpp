@@ -177,7 +177,7 @@ TileViewWidget::TileViewWidget(Composite* parent, TileView* tileView,
 
   mBackground->SetColor(Vec4(0.416f, 0.416f, 0.416f, 1));
   mTitleBar->SetColor(Vec4(0.35f, 0.35f, 0.35f, 1));
-  mHighlight->SetColor(Vec4(TileViewUi::MouseOverBorderColor) * Vec4(1,1,1,0.6));
+  mHighlight->SetColor(Vec4(TileViewUi::MouseOverBorderColor) * Vec4(1.0f,1.0f,1.0f,0.6f));
 
   mObject = tileWidget->mObject;
   mName = tileWidget->mName;

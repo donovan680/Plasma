@@ -1379,7 +1379,7 @@ public:
   {
     if(mReadOnly)
       return;
-    mBorder->SetColor(Vec4(0.58f, 0.18f, 0.18f, 1.0f / 1.4) * 1.4);
+    mBorder->SetColor(Vec4(0.58f, 0.18f, 0.18f, 1.0f / 1.4f) * 1.4f);
     mNameArea->mBackground->SetColor(Vec4(0.43f, 0.18f, 0.18f, 1.0f));
   }
 
