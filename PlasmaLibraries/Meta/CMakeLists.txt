@@ -6,6 +6,9 @@ add_library(Meta "")
 
 set_target_properties(Meta PROPERTIES FOLDER "PlasmaLibraries")
 
+plasma_setup_library(Meta ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Meta ${CMAKE_CURRENT_LIST_DIR})
+
 target_sources(Meta
     PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/AttributeExtension.cpp
@@ -60,27 +63,12 @@ target_sources(Meta
 )
 
 target_include_directories(Meta
-PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR} 
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Meta
-                    PUBLIC
-                    Lightning
+plasma_target_includes(Meta
+  PUBLIC
+    Lightning
 )
-
-plasma_multitarget_output_settings(
-    Meta
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Meta "")

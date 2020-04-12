@@ -11,227 +11,234 @@
 
 namespace Plasma
 {
-typedef InList<Cog, &Cog::SpaceLink> SpaceCogList;
-typedef InList<Cog, &Cog::NameLink> NameCogList;
 
-namespace Events
-{
-  DeclareEvent(SpaceLevelLoaded);
-  DeclareEvent(SpaceModified);
-  DeclareEvent(SpaceObjectsChanged);
-  DeclareEvent(SpaceDestroyed);
-}//namespace Events
+    class Level;
+    class CogCreationContext;
+    class Transform;
+    class Archetype;
+    class CogInitializer;
 
-// Type define for a range
-typedef NameCogList::range CogNameRange;
+    typedef InList<Cog, &Cog::SpaceLink> SpaceCogList;
+    typedef InList<Cog, &Cog::NameLink> NameCogList;
 
-DeclareBitField4(CreationFlags,
-  Editing,
-  DynamicallyAdded,
-  Preview,
-  /// Are proxy components expected when creating this object? Doesn't warn on proxies being created.
-  ProxyComponentsExpected);
+    namespace Events
+    {
+        DeclareEvent(SpaceLevelLoaded);
+        DeclareEvent(SpaceModified);
+        DeclareEvent(SpaceObjectsChanged);
+        DeclareEvent(SpaceDestroyed);
+    }//namespace Events
 
-namespace CreationFlags
-{
-  const CreationFlags::Enum Default = (CreationFlags::Enum)0;
-}//namespace CreationFlags
+    // Type define for a range
+    typedef NameCogList::range CogNameRange;
 
-DeclareBitField1(DestroyFlags, DynamicallyDestroyed);
+    DeclareBitField4(CreationFlags,
+        Editing,
+        DynamicallyAdded,
+        Preview,
+        /// Are proxy components expected when creating this object? Doesn't warn on proxies being created.
+        ProxyComponentsExpected);
 
-//------------------------------------------------------------------------ Space
-typedef ConditionalRange<CogNameRange, RootCondition> CogRootNameRange;
+    namespace CreationFlags
+    {
+        const CreationFlags::Enum Default = (CreationFlags::Enum)0;
+    }//namespace CreationFlags
 
-/// A space is a near boundless, three-dimensional extent in which objects 
-/// and events occur and have relative position, direction, and time.
-/// Essentially a world of objects that exist together.
-/// Used to divide objects between UI, World, Editor, and others. The two most
-/// Common spaces are the 'World' for the game world and the 'Ui'
-/// for the HUD and menus.
-class Space : public Cog
-{
-public:
-  LightningDeclareType(Space, TypeCopyMode::ReferenceType);
+    DeclareBitField1(DestroyFlags, DynamicallyDestroyed);
 
-  IntrusiveLink(Space, link);
-  typedef SpaceCogList::range range;
+    //------------------------------------------------------------------------ Space
+    typedef ConditionalRange<CogNameRange, RootCondition> CogRootNameRange;
 
-  Space();
-  ~Space();
+    /// A space is a near boundless, three-dimensional extent in which objects 
+    /// and events occur and have relative position, direction, and time.
+    /// Essentially a world of objects that exist together.
+    /// Used to divide objects between UI, World, Editor, and others. The two most
+    /// Common spaces are the 'World' for the game world and the 'Ui'
+    /// for the HUD and menus.
+    class Space : public Cog
+    {
+    public:
+        LightningDeclareType(Space, Lightning::TypeCopyMode::ReferenceType);
 
-  // Cog Interface
-  void Initialize(CogInitializer& initializer) override;
-  void SetName(StringParam newName) override;
-  bool IsEditorMode() override;
-  bool IsPreviewMode() override;
-  bool IsEditorOrPreviewMode() override;
-  Cog* Clone() override;
+        IntrusiveLink(Space, link);
+        typedef SpaceCogList::range range;
 
-  // Get Space on Space returns itself
-  Space* GetSpace() override;
-  GameSession* GetGameSession() override;
+        Space();
+        ~Space();
 
-  //----------------------------------------------------------------- Creation
+        // Cog Interface
+        void Initialize(CogInitializer& initializer) override;
+        void SetName(StringParam newName) override;
+        bool IsEditorMode() override;
+        bool IsPreviewMode() override;
+        bool IsEditorOrPreviewMode() override;
+        Cog* Clone() override;
 
-  /// Create an object in the space
-  Cog* Create(Archetype* archetype);
+        // Get Space on Space returns itself
+        Space* GetSpace() override;
+        GameSession* GetGameSession() override;
 
-  /// Create a object at a position in the space
-  Cog* CreateAtPosition(Archetype* archetype, Vec3Param position);
+        //----------------------------------------------------------------- Creation
 
-  /// Create an object from an archetype.
-  Cog* CreateNamed(StringParam archetypeName, StringParam name = String());
+        /// Create an object in the space
+        Cog* Create(Archetype* archetype);
 
-  Cog* CreateAt(StringParam source, Transform* transform);
-  Cog* CreateAt(StringParam source, Vec3Param position);
-  Cog* CreateAt(StringParam source, Vec3Param position, QuatParam rotation);
-  Cog* CreateAt(StringParam source, Vec3Param position, Vec3Param scale);
-  Cog* CreateAt(StringParam source, Vec3Param position, QuatParam rotation, 
-                Vec3Param scale);
+        /// Create a object at a position in the space
+        Cog* CreateAtPosition(Archetype* archetype, Vec3Param position);
 
-  //Create an object link between two objects
-  Cog* CreateLink(Archetype* archetype, Cog* objectA, Cog* objectB);
-  Cog* CreateNamedLink(StringParam archetypeName, Cog* objectA, Cog* objectB);
-  
-  //------------------------------------------------------------------ Loading
-  /// Load new level replace the current level.
-  void LoadLevel(Level* level);
+        /// Create an object from an archetype.
+        Cog* CreateNamed(StringParam archetypeName, StringParam name = String());
 
-  /// Reload the current level.
-  void ReloadLevel();
+        Cog* CreateAt(StringParam source, Transform* transform);
+        Cog* CreateAt(StringParam source, Vec3Param position);
+        Cog* CreateAt(StringParam source, Vec3Param position, QuatParam rotation);
+        Cog* CreateAt(StringParam source, Vec3Param position, Vec3Param scale);
+        Cog* CreateAt(StringParam source, Vec3Param position, QuatParam rotation,
+            Vec3Param scale);
 
-  /// Save a level file.
-  void SaveLevelFile(StringParam levelName);
+        //Create an object link between two objects
+        Cog* CreateLink(Archetype* archetype, Cog* objectA, Cog* objectB);
+        Cog* CreateNamedLink(StringParam archetypeName, Cog* objectA, Cog* objectB);
 
-  /// Last level loaded.
-  Level* GetCurrentLevel();
+        //------------------------------------------------------------------ Loading
+        /// Load new level replace the current level.
+        void LoadLevel(Level* level);
 
-  /// Load the pending level. Called before update.
-  void LoadPendingLevel();
+        /// Reload the current level.
+        void ReloadLevel();
 
-  /// Load the level file
-  void LoadLevelFile(StringParam filePath);
+        /// Save a level file.
+        void SaveLevelFile(StringParam levelName);
 
-  //----------------------------------------------------------- Adding Objects
+        /// Last level loaded.
+        Level* GetCurrentLevel();
 
-  /// Do no destroy current objects, add objects from level and change loaded level.
-  void LoadLevelAdditive(Level* levelName);
+        /// Load the pending level. Called before update.
+        void LoadPendingLevel();
 
-  /// Add all objects from a level.
-  Level* AddObjectsFromLevel(Level* levelName);
+        /// Load the level file
+        void LoadLevelFile(StringParam filePath);
 
-  /// Add objects from serializer stream.
-  range AddObjectsFromStream(StringParam source, Serializer& stream);
+        //----------------------------------------------------------- Adding Objects
 
-  //------------------------------------------------------- Destroying Objects
-  /// Destroy all objects in space.
-  void DestroyAll();
+        /// Do no destroy current objects, add objects from level and change loaded level.
+        void LoadLevelAdditive(Level* levelName);
 
-  /// Destroy all objects created from level.
-  void DestroyAllFromLevel();
+        /// Add all objects from a level.
+        Level* AddObjectsFromLevel(Level* levelName);
 
-  /// Destroy the space and all objects inside it.
-  void Destroy() override;
+        /// Add objects from serializer stream.
+        range AddObjectsFromStream(StringParam source, Serializer& stream);
 
-  /// Internal Destroy
-  void ForceDestroy() override;
+        //------------------------------------------------------- Destroying Objects
+        /// Destroy all objects in space.
+        void DestroyAll();
 
-  //---------------------------------------------------------------- Objects
+        /// Destroy all objects created from level.
+        void DestroyAllFromLevel();
 
-  /// Find an object in the space with a given name.
-  CogNameRange FindAllObjectsByName(StringParam name);
-  /// Find root objects in the space with the given name.
-  CogRootNameRange FindAllRootObjectsByName(StringParam name);
+        /// Destroy the space and all objects inside it.
+        void Destroy() override;
 
-  /// Find an object in the space with a given name.
-  Cog* FindObjectByName(StringParam name);
-  Cog* FindFirstObjectByName(StringParam name);
-  Cog* FindLastObjectByName(StringParam name);
-  Cog* FindFirstRootObjectByName(StringParam name);
-  Cog* FindLastRootObjectByName(StringParam name);
+        /// Internal Destroy
+        void ForceDestroy() override;
 
-  /// All objects in the space.
-  range AllObjects() { return mCogList.All(); }
+        //---------------------------------------------------------------- Objects
 
-  /// Number of objects in the space.
-  uint GetObjectCount() { return mCogsInSpace; }
+        /// Find an object in the space with a given name.
+        CogNameRange FindAllObjectsByName(StringParam name);
+        /// Find root objects in the space with the given name.
+        CogRootNameRange FindAllRootObjectsByName(StringParam name);
 
-  //------------------------------------------------------------ Modification
+        /// Find an object in the space with a given name.
+        Cog* FindObjectByName(StringParam name);
+        Cog* FindFirstObjectByName(StringParam name);
+        Cog* FindLastObjectByName(StringParam name);
+        Cog* FindFirstRootObjectByName(StringParam name);
+        Cog* FindLastRootObjectByName(StringParam name);
 
-  //Any change that needs to be saved marks the space as modified.
-  void MarkModified();
-  bool GetModified();
-  void MarkNotModified();
+        /// All objects in the space.
+        range AllObjects() { return mCogList.All(); }
 
-  /// Any change to the count / structure of the objects.
-  void CheckForChangedObjects();
-  /// This should be called whenever we want the object view to be refreshed / updated.
-  void ChangedObjects();
+        /// Number of objects in the space.
+        uint GetObjectCount() { return mCogsInSpace; }
 
-  //-------------------------------------------------------------------- Flags
-  //Get create flags used for create new objects in this space.
-  //Used by Factory.
-  uint GetCreationFlags();
+        //------------------------------------------------------------ Modification
 
-  HierarchyList::range AllRootObjects(){return mRoots.All();}
+        //Any change that needs to be saved marks the space as modified.
+        void MarkModified();
+        bool GetModified();
+        void MarkNotModified();
 
-//Internals
-  void AddObject(Cog* cog);
-  void RemoveObject(Cog* cog);
-  typedef HashMap<String, NameCogList*> CogNameMap;
-  CogNameMap mNameMap;
+        /// Any change to the count / structure of the objects.
+        void CheckForChangedObjects();
+        /// This should be called whenever we want the object view to be refreshed / updated.
+        void ChangedObjects();
 
-  static Memory::Pool* sCogLists;
+        //-------------------------------------------------------------------- Flags
+        //Get create flags used for create new objects in this space.
+        //Used by Factory.
+        uint GetCreationFlags();
 
-  void AddToNameMap(Cog* cog, StringParam name);
-  void RemoveFromNameMap(Cog* cog, StringParam name);
+        HierarchyList::range AllRootObjects() { return mRoots.All(); }
 
-  // These two variables are used to guard against floating point exceptions.
-  // If an object's position is larger than the max position then the value
-  // is clamped and InvalidObjectPosition is set to true. This lets the engine
-  // know to only display 1 error message per space for this.
-  float mMaxObjectPosition;
-  bool mInvalidObjectPositionOccurred;
+        //Internals
+        void AddObject(Cog* cog);
+        void RemoveObject(Cog* cog);
+        typedef HashMap<String, NameCogList*> CogNameMap;
+        CogNameMap mNameMap;
 
-  // Last level loaded into the space
-  HandleOf<Level> mLevelLoaded;
+        static Memory::Pool* sCogLists;
 
-  // The game session that created us (can be null)
-  GameSession* mGameSession;
+        void AddToNameMap(Cog* cog, StringParam name);
+        void RemoveFromNameMap(Cog* cog, StringParam name);
 
-  // Internal
-  // Objects
-  SpaceCogList mCogList;
-  uint mCogsInSpace;
+        // These two variables are used to guard against floating point exceptions.
+        // If an object's position is larger than the max position then the value
+        // is clamped and InvalidObjectPosition is set to true. This lets the engine
+        // know to only display 1 error message per space for this.
+        float mMaxObjectPosition;
+        bool mInvalidObjectPositionOccurred;
 
-  // Hierarchy
-  HierarchyList mRoots;
-  uint mRootCount;
-  
-  // If valid a load is pending for next update
-  HandleOf<Level> mPendingLevel;
-  // Allows CameraViewports to attach viewport to a space specific GameWidget
-  HandleOf<GameWidget> mGameWidgetOverride;
+        // Last level loaded into the space
+        Lightning::HandleOf<Level> mLevelLoaded;
 
-  // When editing and state change will mark the level as modified.
-  bool mModified;
-  // Have the objects contained in the level changed. Use for editor ui.
-  bool mObjectsChanged;
-  // Loaded for editing use proxies
-  BitField<CreationFlags::Enum> mCreationFlags;
-  bool mSubSpace;
-  // Is the space currently in the process of loading a level right now.
-  bool mIsLoadingLevel;
+        // The game session that created us (can be null)
+        GameSession* mGameSession;
 
-  void SerializeObjectsToSpace(CogInitializer& initializer, 
-                               CogCreationContext& context, Serializer& loader);
+        // Internal
+        // Objects
+        SpaceCogList mCogList;
+        uint mCogsInSpace;
 
-  friend class Cog;
-  friend class CogInitializer;
-  friend class SubSpaceMount;
-  friend class Level;
-  friend class SpaceObjectSource;
-  friend class ArchetypeRebuilder;
-};
+        // Hierarchy
+        HierarchyList mRoots;
+        uint mRootCount;
+
+        // If valid a load is pending for next update
+        Lightning::HandleOf<Level> mPendingLevel;
+        // Allows CameraViewports to attach viewport to a space specific GameWidget
+        Lightning::HandleOf<GameWidget> mGameWidgetOverride;
+
+        // When editing and state change will mark the level as modified.
+        bool mModified;
+        // Have the objects contained in the level changed. Use for editor ui.
+        bool mObjectsChanged;
+        // Loaded for editing use proxies
+        BitField<CreationFlags::Enum> mCreationFlags;
+        bool mSubSpace;
+        // Is the space currently in the process of loading a level right now.
+        bool mIsLoadingLevel;
+
+        void SerializeObjectsToSpace(CogInitializer& initializer,
+            CogCreationContext& context, Serializer& loader);
+
+        friend class Cog;
+        friend class CogInitializer;
+        friend class SubSpaceMount;
+        friend class Level;
+        friend class SpaceObjectSource;
+        friend class ArchetypeRebuilder;
+    };
 
 }//namespace Plasma

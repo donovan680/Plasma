@@ -4,6 +4,8 @@
 ################################################################################
 add_library(Content "")
 
+plasma_setup_library(Content ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Content ${CMAKE_CURRENT_LIST_DIR})
 set_target_properties(Content PROPERTIES FOLDER "Systems")
 
 target_sources(Content
@@ -90,32 +92,18 @@ target_sources(Content
     ${CMAKE_CURRENT_LIST_DIR}/LightningPluginContent.hpp
 )
 
-target_include_directories(Content 
-    PUBLIC 
-        ${CMAKE_CURRENT_LIST_DIR}/../Content
-        ${CMAKE_CURRENT_LIST_DIR}/../
+target_include_directories(Content
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
+    ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Content
-    PUBLIC
+plasma_target_includes(Content
+  PUBLIC
     Common
     Lightning
-    ${AssimpStatic}
-    ${NvttStatic}
-    ${OpusStatic}
+    Assimp
+    ZLib
+    Opus
+    Nvtt
 )
-
-plasma_multitarget_output_settings(
-    Content
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Content "")

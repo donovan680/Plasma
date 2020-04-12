@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Lightning/Lightning.hpp"
+#include "Lightning/Precompiled.hpp"
 using namespace Lightning;
 #include "SpatialPartitionStandard.hpp"

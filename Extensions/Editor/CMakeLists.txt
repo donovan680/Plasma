@@ -6,6 +6,9 @@ add_library(Editor "")
 
 set_target_properties(Editor PROPERTIES FOLDER "Extensions")
 
+plasma_setup_library(Editor ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Editor ${CMAKE_CURRENT_LIST_DIR})
+
 target_sources(Editor
   PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/Property/BasicPropertyEditors.cpp
@@ -453,32 +456,18 @@ target_sources(Editor
   ${CMAKE_CURRENT_LIST_DIR}/Scintilla/src/XPM.h
 )
 
-target_include_directories(Editor 
-PUBLIC 
-    ${CMAKE_CURRENT_LIST_DIR}/../../PlasmaLibraries/Lightning/Project    
-    ${CMAKE_CURRENT_LIST_DIR}/../Widget
-    ${CMAKE_CURRENT_LIST_DIR}/../Editor
-    ${CMAKE_CURRENT_LIST_DIR}/../../Systems
-    ${CMAKE_CURRENT_LIST_DIR}/../../PlasmaLibraries
+target_include_directories(Editor
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Editor
-                PUBLIC
-                Common
-) 
-
-plasma_multitarget_output_settings(
-    Editor
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
+plasma_target_includes(Editor
+  PUBLIC
+    Scintilla
+    Common
+    LightningShaders
+    Networking
+    Sound
+    LightningScript
 )
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Editor "")

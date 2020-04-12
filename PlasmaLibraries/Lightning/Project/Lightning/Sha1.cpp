@@ -5,7 +5,7 @@
 
 // Note: This code is based on Steve Reid's 100% Public Domain Sha1 implementation (thank you Steve!)
 
-#include "Lightning.hpp"
+#include "Precompiled.hpp"
 
 namespace Lightning
 {

@@ -3,7 +3,7 @@
 * Copyright 2016, DigiPen Institute of Technology
 \**************************************************************/
 
-#include "Lightning.hpp"
+#include "Precompiled.hpp"
 
 // Using directives
 using namespace Plasma;

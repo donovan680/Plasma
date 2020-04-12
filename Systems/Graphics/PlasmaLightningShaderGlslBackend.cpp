@@ -48,7 +48,7 @@ bool PlasmaLightningShaderGlslBackend::RunTranslationPass(ShaderTranslationPassR
     compiler.set_name(ubo.base_type_id, name.c_str());
   }
 
-#ifdef PLATFORM_EMSCRIPTEN
+#ifdef PlasmaTargetOsEmscripten
   // gles output is going to flatten input/output blocks and prepend the block name to each member.
   // Forcing block typenames to match.
   for(auto stageInput : resources.stage_inputs)

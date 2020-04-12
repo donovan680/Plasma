@@ -9,10 +9,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #pragma once
+#include "Event.hpp"
+#include "Library.hpp"
+#include "Object.hpp"
 
 namespace Plasma
 {
-  namespace Events
+    class AttributeExtension;
+
+    namespace Events
   {
     DeclareEvent(FillDocumentation);
   }
@@ -45,14 +50,14 @@ namespace Plasma
   String GenerateDocumentationString(StringParam className);
 
   /// Creates the full template name but with the template type names instead of the instance type names
-  String BuildDocumentationFullTemplateName(StringParam baseName, Array<Constant>& templateArgs
+  String BuildDocumentationFullTemplateName(StringParam baseName, Array<Lightning::Constant>& templateArgs
     , TypeReplacementMap& replacements);
 
   /// If type is in replacement map (or contains a token that is) return type with that replaced
   String ReplaceTypeIfOnList(String& type, TypeReplacementMap *replacements);
 
   /// Insert templated type into the replacement map, used when loading templated types from meta.
-  void InsertIntoReplacementsMap(InstantiateTemplateInfo& templateHandler, Array<Constant>& dummyTypes, ArrayMap<String, String>& replacements, String *fullName);
+  void InsertIntoReplacementsMap(Lightning::InstantiateTemplateInfo& templateHandler, Array<Lightning::Constant>& dummyTypes, ArrayMap<String, String>& replacements, String* fullName);
 
   ///// CLASSES /////
   class ExceptionDoc : public Object
@@ -201,7 +206,7 @@ namespace Plasma
     void Serialize(Serializer& stream);
 
     /// Allows comparison of a lightning typeId with a documentation type
-    bool IsSameType(DelegateType* type);
+    bool IsSameType(Lightning::DelegateType* type);
 
     String mType;
 
@@ -252,19 +257,19 @@ namespace Plasma
     /// Cleans and rebuilds property and method maps as well as sorts arrays
     void BuildMapsAndArrays(void);
 
-    void FillDocumentation(BoundType* classType);
+    void FillDocumentation(Lightning::BoundType* classType);
 
     PropertyDoc* GetPropertyDoc(StringParam propertyName);
     MethodDoc* GetMethodDoc(Lightning::Function* function);
 
     /// Helper for CreateClassDocFromBoundType to load events
-    void CreateEventDocFromBoundType(SendsEvent* eventSent);
+    void CreateEventDocFromBoundType(Lightning::SendsEvent* eventSent);
 
     /// Helper for CreateClassDocFromBoundType to load methods
     void CreateMethodDocFromBoundType(Lightning::Function* method, TypeReplacementMap *replacements, bool exportDoc);
 
     /// Helper for CreateClassDocFromBoundType to load properties
-    void CreatePropertyDocFromBoundType(Property* metaProperty, TypeReplacementMap *replacements, bool exportDoc);
+    void CreatePropertyDocFromBoundType(Lightning::Property* metaProperty, TypeReplacementMap *replacements, bool exportDoc);
 
     HashMap<String, PropertyDoc*> mPropertiesMap;
 
@@ -302,7 +307,7 @@ namespace Plasma
   public:
     void Serialize(Serializer& stream);
 
-    void FillDocumentation(BoundType* enumOrFlagType);
+    void FillDocumentation(Lightning::BoundType* enumOrFlagType);
 
     // key is the enumValue and the data is the description
     ArrayMap<String, String> mEnumValues;
@@ -316,7 +321,7 @@ namespace Plasma
   class DocumentationLibrary : public LazySingleton<DocumentationLibrary, EventObject>
   {
   public:
-    LightningDeclareType(DocumentationLibrary, TypeCopyMode::ReferenceType);
+    LightningDeclareType(DocumentationLibrary, Lightning::TypeCopyMode::ReferenceType);
 
     ~DocumentationLibrary();
 
@@ -328,18 +333,18 @@ namespace Plasma
     void FinalizeDocumentation();
 
     /// Helper for CreateClassDocFromBoundType to load enums and flags
-    void CreateFlagOrEnumDocFromBoundType(BoundType *type, bool exportDoc);
+    void CreateFlagOrEnumDocFromBoundType(Lightning::BoundType *type, bool exportDoc);
 
     /// Helper for LoadFromMeta, checks if a type is in the replacements map
-    ClassDoc* CreateClassDocFromBoundType(BoundType *type, TypeReplacementMap* replacements);
+    ClassDoc* CreateClassDocFromBoundType(Lightning::BoundType *type, TypeReplacementMap* replacements);
 
     /// Helper for LoadFromMeta, loop for instantiating and loading information from templated types
-    void GetDocumentationFromTemplateHandler(StringParam libName, InstantiateTemplateInfo& templateHandler, LibraryBuilder& builder, ArrayMap<String, String>& allTemplateReplacements);
+    void GetDocumentationFromTemplateHandler(StringParam libName, Lightning::InstantiateTemplateInfo& templateHandler, Lightning::LibraryBuilder& builder, ArrayMap<String, String>& allTemplateReplacements);
 
     /// Load list of classes from the Meta Database
     void LoadFromMeta();
 
-    ClassDoc* GetClassDoc(BoundType* type);
+    ClassDoc* GetClassDoc(Lightning::BoundType* type);
 
     ClassDoc* GetClassDoc(StringParam className);
 

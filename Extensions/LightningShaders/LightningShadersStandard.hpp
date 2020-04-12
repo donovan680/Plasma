@@ -7,7 +7,7 @@
 #pragma once
 
 #include "Common/CommonStandard.hpp"
-#include "Lightning/Lightning.hpp"
+#include "Lightning/Precompiled.hpp"
 
 #include "ForwardDeclarations.hpp"
 
@@ -16,7 +16,7 @@
 #include "ShaderCodeBuilder.hpp"
 
 // Grab the latest unified spirv file. Update when switching spirv versions
-#include "SpirV/SpirVFiles/external/SPIRV-Headers/include/spirv/unified1/spirv.hpp"
+#include "spirv/unified1/spirv.h"
 #include "SpirVHelpers.hpp"
 #include "LightningShaderIRMeta.hpp"
 #include "LightningShaderIRReflection.hpp"

@@ -9,7 +9,7 @@
 // Standard includes
 #include "Common/CommonStandard.hpp"
 
-#include "Lightning/Lightning.hpp"
+#include "Lightning/Precompiled.hpp"
 using namespace Lightning;
 
 namespace Geometry

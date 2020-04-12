@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "Precompiled.hpp"
 
-#if defined(COMPILER_GCC)
+#if defined(PlasmaCompilerGCC)
   // This is not at all correct for GCC, but we just want it to
   // compile on GCC for Windows (POSIX takes a different path anyways)
   typedef int socklen_t;

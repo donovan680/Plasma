@@ -6,6 +6,9 @@ add_library(Gameplay "")
 
 set_target_properties(Gameplay PROPERTIES FOLDER "Extensions")
 
+plasma_setup_library(Gameplay ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Gameplay ${CMAKE_CURRENT_LIST_DIR})
+
 target_sources(Gameplay
     PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/CameraViewport.cpp
@@ -62,31 +65,15 @@ target_sources(Gameplay
 )
 
 target_include_directories(Gameplay
-PUBLIC 
-    ${CurrentDirectory}../
-    Platform
-    BrowserSubProcess
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
+    ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Gameplay
-                PUBLIC
-                Common
-                Lightning
-                Engine
-                ${CEFStatic}
-) 
-
-plasma_multitarget_output_settings(
-    Gameplay
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
+plasma_target_includes(Gameplay
+  PUBLIC
+    Common
+    Lightning
+    Engine
+    LightningShaders
 )
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Gameplay "") 

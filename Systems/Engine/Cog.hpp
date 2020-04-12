@@ -5,11 +5,15 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma once
+#include "Game.hpp"
+#include "HierarchyRange.hpp"
+#include "Space.hpp"
 
 namespace Plasma
 {
+    class Cog;
 
-extern const bool cBindCogChildrenReverseRange;
+    extern const bool cBindCogChildrenReverseRange;
 
 //------------------------------------------------------------------------------------------- Events
 namespace Events
@@ -76,7 +80,7 @@ class Cog : public BaseCog
 {
 public:
   /// Meta Initialization.
-  LightningDeclareType(Cog, TypeCopyMode::ReferenceType);
+  LightningDeclareType(Cog, Lightning::TypeCopyMode::ReferenceType);
 
   /// Memory Allocation  
   OverloadedNew();

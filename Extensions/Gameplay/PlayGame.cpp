@@ -62,7 +62,7 @@ void CreateGame(Cog* configCog, Cog* projectCog, StringParam projectFile)
 
   // On Emscripten, the window full screen can only be done by a user action.
   // Setting it on startup causes an abrupt change the first time the user click or hits a button.
-#if !defined(PLATFORM_EMSCRIPTEN)
+#if !defined(PlasmaTargetOsEmscripten)
   if (windowLaunch == nullptr || windowLaunch->mLaunchFullscreen)
     mainWindow->SetState(WindowState::Fullscreen);
 #endif

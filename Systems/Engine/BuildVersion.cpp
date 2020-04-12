@@ -6,10 +6,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "Precompiled.hpp"
 
-/// BuildVersion.inl file is updated by the build system based on the latest changeset and the build id files
-#include "BuildVersion.inl"
-
-
 #if PlasmaRelease
   #define PlasmaConfiguration "Release"
 #elif PlasmaDebug

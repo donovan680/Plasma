@@ -62,3 +62,7 @@ CMakeBuild/*
 !CMakeBuild/*/*.lightningscript
 
 WebBuild/
+
+Build/
+
+node_modules/

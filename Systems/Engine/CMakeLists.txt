@@ -4,6 +4,8 @@
 ################################################################################
 add_library(Engine "")
 
+plasma_setup_library(Engine ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Engine ${CMAKE_CURRENT_LIST_DIR})
 set_target_properties(Engine PROPERTIES FOLDER "Systems")
 
 target_sources(Engine
@@ -214,39 +216,16 @@ target_sources(Engine
     ${CMAKE_CURRENT_LIST_DIR}/Action/MetaAction.hpp
 )
 
-target_include_directories(Engine 
-    PUBLIC 
-        ${CMAKE_CURRENT_LIST_DIR}/../Engine
-        ${CMAKE_CURRENT_LIST_DIR}/../
+target_include_directories(Engine
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
+    ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Engine
+plasma_target_includes(Engine
     PUBLIC
     Common
+    Meta
     Geometry
     Lightning
 )  
-
-#add_custom_command(
-#    TARGET Engine PRE_BUILD    
-#    COMMAND ${CMAKE_COMMAND} 
-#    # options
-#    -DPLASMA_CORE_ROOT="${plasma_core_path}"
-#    # command
-#    -P ${cmake_utilities_dir}/Update_Build_Version_Script.cmake
-#) 
-
-plasma_multitarget_output_settings(
-    Engine
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Engine "")

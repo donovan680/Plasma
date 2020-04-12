@@ -1,0 +1,6 @@
+DISABLE_WARNINGS(implicit-fallthrough)
+ADD_DEFINITIONS(-DNO_VIZ -DSTDC -DNO_GZIP)
+FILE(GLOB SRC_ZLIB "*.c" "*.h")
+INCLUDE_DIRECTORIES(".")
+ADD_LIBRARY(zlib OBJECT ${SRC_ZLIB})
+set_target_properties(zlib PROPERTIES FOLDER "External")

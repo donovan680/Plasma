@@ -3,4 +3,4 @@
 * Copyright 2016, DigiPen Institute of Technology
 \**************************************************************/
 
-#include "Lightning.hpp"
+#include "Precompiled.hpp"

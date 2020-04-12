@@ -6,10 +6,13 @@ add_library(Common "")
 
 set_target_properties(Common PROPERTIES FOLDER "PlasmaLibraries")
 
-set(manualAdditions "")
+plasma_setup_library(Common ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Common ${CMAKE_CURRENT_LIST_DIR})
+
+set(PLASMA_COMMON_VISUALIZER "")
 
 if ("${CMAKE_GENERATOR}" MATCHES "Visual Studio*")
-    set(manualAdditions "${CMAKE_CURRENT_LIST_DIR}/PlasmaVisualizers.natvis")
+    set(PLASMA_COMMON_VISUALIZER "${CMAKE_CURRENT_LIST_DIR}/PlasmaVisualizers.natvis")
 endif()
 
 target_sources(Common
@@ -263,25 +266,12 @@ PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/Utility/VariantConfig.hpp
     ${CMAKE_CURRENT_LIST_DIR}/Utility/Web.cpp
     ${CMAKE_CURRENT_LIST_DIR}/Utility/Web.hpp
+    ${PLASMA_COMMON_VISUALIZER}
 )
 
 target_include_directories(Common
-PUBLIC 
+    PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
+    ${PLASMA_COMMON_VISUALIZER}
 )
-
-plasma_multitarget_output_settings(
-    Common
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Common "")

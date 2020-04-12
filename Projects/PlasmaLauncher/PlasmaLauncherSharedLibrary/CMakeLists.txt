@@ -7,6 +7,8 @@ set(CurrentDirectory ${CMAKE_CURRENT_LIST_DIR})
 
 add_library(PlasmaLauncherSharedLibrary SHARED "")
 
+plasma_setup_library(PlasmaLauncherSharedLibrary ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(PlasmaLauncherSharedLibrary ${CMAKE_CURRENT_LIST_DIR})
 set_target_properties(PlasmaLauncherSharedLibrary PROPERTIES FOLDER "Projects")
 
 target_sources(PlasmaLauncherSharedLibrary
@@ -59,14 +61,6 @@ target_sources(PlasmaLauncherSharedLibrary
     ${CMAKE_CURRENT_LIST_DIR}/VersionSelector.hpp
 )
 
-target_include_directories(PlasmaLauncherSharedLibrary 
-    PUBLIC 
-        ${CurrentDirectory}/../../
-        ${CurrentDirectory}
-        ${Dependencies_Root}
-        ${Source_Root}
-)
-
 target_link_libraries(PlasmaLauncherSharedLibrary
                       PUBLIC
                       Common
@@ -94,28 +88,4 @@ target_link_libraries(PlasmaLauncherSharedLibrary
                       CodeTranslator
 ) 
 
-plasma_multitarget_output_settings(
-    PlasmaLauncherSharedLibrary
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER PlasmaLauncher
-)
-
-add_dependencies(PlasmaLauncherSharedLibrary
-    BrowserSubProcess
-)
-
-plasma_subfolder_source_group(${plasma_core_path} Projects/PlasmaLauncher PlasmaLauncherSharedLibrary "${plasma_core_path}/Projects")
-
-launcher_shared_post_build(
-    PlasmaLauncherSharedLibrary 
-    ${plasma_core_path}
-    ${CurrentDirectory}
-    ${plasma_binary_dir}
-)
+plasma_copy_from_linked_libraries(PlasmaLauncherSharedLibrary)

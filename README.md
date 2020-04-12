@@ -10,10 +10,13 @@ Windows:
 	
     git clone https://github.com/dragonCASTjosh/Plasma
     cd Plasma
-    cd CMakeBuild
-    ./GenerateVS2019.cmd
-    cd VS2019_MSVC_Windows
-    devenv Plasma.sln
+    npm install
+    node index.js cmake
+    Output is located in the Build Folder
+
+Linux and Other Platofrms:
+	Coming Soon
+
 
 ## Screenshots
 

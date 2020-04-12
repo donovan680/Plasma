@@ -4,6 +4,8 @@
 ################################################################################
 add_library(Support "")
 
+plasma_setup_library(Support ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Support ${CMAKE_CURRENT_LIST_DIR})
 set_target_properties(Support PROPERTIES FOLDER "PlasmaLibraries")
 
 target_sources(Support
@@ -37,30 +39,9 @@ PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/Urls.hpp
 )
 
-target_include_directories(Support
-PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR}/../
-    ${CMAKE_CURRENT_LIST_DIR}
+plasma_target_includes(Support
+  PUBLIC
+    Common
+    Libpng
+    ZLib
 )
-
-target_link_libraries(Support
-                    PUBLIC
-                    Common
-                    ${ZLibStatic}
-                    ${LibpngStatic}
-)
-
-plasma_multitarget_output_settings(
-    Support
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Support "")

@@ -18,7 +18,7 @@
 #endif
 
 //-----------------------------------------------------------------------------Warnings
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
 #define _SECURE_SCL 0
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
@@ -26,7 +26,7 @@
 #define _NO_CVCONST_H
 #endif
 
-#ifdef COMPILER_MICROSOFT
+#ifdef PlasmaCompilerMsvc
 
 // Enable these warnings by setting them to level 3
 // Enable warning function does not override any base class virtual member function
@@ -185,7 +185,7 @@
 
 #endif
 
-#if defined(COMPILER_CLANG) 
+#if defined(PlasmaCompilerClang) 
 // Ignore unknown pragma warnings...
 #pragma clang diagnostic ignored "-Wunknown-pragmas"
 #pragma clang diagnostic ignored "-Wpragmas"
@@ -258,7 +258,7 @@
 #undef __STDC__
 #endif
 
-#if defined(COMPILER_GCC)
+#if defined(PlasmaCompilerGCC)
 // Ignore unknown pragma warnings...
 #pragma GCC diagnostic ignored "-Wpragmas"
 
@@ -289,14 +289,14 @@
 #define PlasmaStringDeref(text) #text
 #define PlasmaStringize(text) PlasmaStringDeref(text)
 
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
 #define PlasmaThreadLocal __declspec(thread)
 #define PlasmaImport __declspec(dllimport)
 #define PlasmaExport __declspec(dllexport)
 #define PlasmaExportC extern "C" __declspec(dllexport)
 #define PlasmaDebugBreak() __debugbreak()
 #define PlasmaTodo(text) /* __pragma(message(__FILE__ "(" PlasmaStringize(__LINE__) ") : Todo: " text)) */
-#if defined(COMPILER_MICROSOFT)
+#if defined(PlasmaCompilerMsvc)
 #define PlasmaForceInline inline __forceinline
 #else
 #define PlasmaForceInline inline
@@ -308,7 +308,7 @@
 #define PlasmaExport __attribute__((visibility("default")))
 #define PlasmaExportC extern "C" __attribute__((visibility("default")))
 #define PlasmaTodo(text)
-#if defined(PLATFORM_EMSCRIPTEN)
+#if defined(PlasmaTargetOsEmscripten)
 #define PlasmaForceInline
 #define PlasmaDebugBreak()
 #else
@@ -332,6 +332,6 @@
 #endif
 
 //-----------------------------------------------------------------------------Includes
-#ifndef PLATFORM_WINDOWS
+#if __has_include(<alloca.h>)
 #include <alloca.h>
 #endif

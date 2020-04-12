@@ -5,6 +5,8 @@
 
 add_library(SpatialPartition  "")
 
+plasma_setup_library(SpatialPartition ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(SpatialPartition ${CMAKE_CURRENT_LIST_DIR})
 set_target_properties(SpatialPartition PROPERTIES FOLDER "PlasmaLibraries")
 
 target_sources(SpatialPartition
@@ -68,27 +70,12 @@ target_sources(SpatialPartition
 )
 
 target_include_directories(SpatialPartition
-PUBLIC
-    ${CurrentDirectory}/SpatialPartition 
-    ${CurrentDirectory}
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
+    ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(SpatialPartition
-                    PUBLIC
-                    Lightning
+plasma_target_includes(SpatialPartition
+  PUBLIC
+    Lightning
 )
-
-plasma_multitarget_output_settings(
-    SpatialPartition
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} SpatialPartition "")

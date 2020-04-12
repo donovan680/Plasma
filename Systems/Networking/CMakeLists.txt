@@ -5,6 +5,9 @@
 
 add_library(Networking "")
 
+plasma_setup_library(Networking ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Networking ${CMAKE_CURRENT_LIST_DIR})
+
 set_target_properties(Networking PROPERTIES FOLDER "Systems")
 
 target_sources(Networking
@@ -67,29 +70,14 @@ target_sources(Networking
     ${CMAKE_CURRENT_LIST_DIR}/WebServer.hpp
 )
 
-target_include_directories(Networking 
-    PUBLIC 
-        ${CMAKE_CURRENT_LIST_DIR}/../Networking
-        ${CMAKE_CURRENT_LIST_DIR}/../
+target_include_directories(Networking
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/../Networking
+    ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Networking
-    PUBLIC
+plasma_target_includes(Networking
+  PUBLIC
     Common
     Geometry
-) 
-
-plasma_multitarget_output_settings(
-    Networking
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
 )
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Networking "")

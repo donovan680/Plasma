@@ -272,7 +272,7 @@ void LightningPluginSource::WriteCurrentVersionFile()
   if(mContentItem == nullptr)
     return;
 
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
   String revisionNumber = GetRevisionNumberString();
   String propsFile = BuildString(
     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n"
@@ -310,7 +310,7 @@ void LightningPluginSource::OpenIde()
   CopyPluginDependenciesOnce();
   String codeDir = GetCodeDirectory();
 
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
 
   if (CheckIdeAndInformUser() == false)
     return;
@@ -335,7 +335,7 @@ void LightningPluginSource::OpenIde()
 
 void LightningPluginSource::OnEngineUpdate(UpdateEvent* event)
 {
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
   if (mOpenIdeAfterToolsInstallCounter > 0)
   {
     // If the installer process is finally stopped
@@ -358,7 +358,7 @@ void LightningPluginSource::InstallIdeTools()
 {
   MarkAttemptedIdeToolsInstAll();
 
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
   String extensionPath = FilePath::Combine(PL::gContentSystem->ToolPath, "PlasmaLightningPlugins.vsix");
   Os::SystemOpenFile(extensionPath.c_str());
 #else
@@ -389,7 +389,7 @@ void LightningPluginSource::MarkAttemptedIdeToolsInstAll()
 
 bool LightningPluginSource::IsIdeToolInstalled()
 {
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
 
   // 14 is Visual Studio 2015
   static const char* cVersions[] =
@@ -445,7 +445,7 @@ bool LightningPluginSource::CheckIdeAndInformUser()
   {
     DoNotifyWarning("Lightning Plugin", "No IDE was detected, you must first install a C++ IDE for your platform");
 
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
     Os::SystemOpenNetworkFile("https://www.visualstudio.com/post-download-vs?sku=community&clcid=0x409");
 #endif
     return false;
@@ -455,7 +455,7 @@ bool LightningPluginSource::CheckIdeAndInformUser()
 
 void LightningPluginSource::Clean()
 {
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
   String codeDir = GetCodeDirectory();
   String ideFile = FilePath::Combine(codeDir, BuildString(Name, "Clean.bat"));
   Status status;
@@ -476,7 +476,7 @@ void LightningPluginSource::CompileConfiguration(StringParam configuration)
   String codeDir = GetCodeDirectory();
   String taskName = BuildString("Compiling ", configuration," ", Name);
 
-#if defined(PLATFORM_WINDOWS)
+#if defined(PlasmaTargetOsWindows)
   String configurationBatchFileName = BuildString(Name, "Build", configuration);
   String configurationBatchFilePath = FilePath::CombineWithExtension(codeDir, configurationBatchFileName, ".bat");
   String process = BuildString("cmd /C \"", configurationBatchFilePath, "\"");

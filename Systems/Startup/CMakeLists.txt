@@ -4,6 +4,9 @@
 ################################################################################
 add_library(Startup "")
 
+plasma_setup_library(Startup ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Startup ${CMAKE_CURRENT_LIST_DIR})
+
 set_target_properties(Startup PROPERTIES FOLDER "Systems")
 
 target_sources(Startup
@@ -15,29 +18,15 @@ target_sources(Startup
     ${CMAKE_CURRENT_LIST_DIR}/StartupStandard.hpp
 )
 
-target_include_directories(Startup 
-PUBLIC 
+target_include_directories(Startup
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Startup
-    PUBLIC
+plasma_target_includes(Startup
+  PUBLIC
     Common
     Geometry
     Graphics
-) 
-
-plasma_multitarget_output_settings(
-    Startup
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
 )
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Startup "")

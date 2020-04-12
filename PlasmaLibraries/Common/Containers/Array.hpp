@@ -22,9 +22,7 @@ namespace Plasma
 /// Linear time for insertion and removal at beginning or middle.
 /// This array is also optimized to use pod conventions (memcpy, no destructors)
 /// on fundamental types or types with proper type traits.(see TypeTraits).
-template< typename ValueType,
-          typename Allocator = DefaultAllocator, 
-          typename value_tt  = StandardTraits<ValueType> >
+    template <typename ValueType, typename Allocator = DefaultAllocator, typename value_tt = StandardTraits<ValueType>>
 class PlasmaSharedTemplate Array : public AllocationContainer<Allocator>
 {
 public:

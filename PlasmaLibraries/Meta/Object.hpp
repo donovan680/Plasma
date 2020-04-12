@@ -16,10 +16,10 @@ class Actions;
 
 //----------------------------------------------------------------------- Object
 /// Core Object class every engine and game object inherits from this class.
-class Object : public ILightningObject
+class Object : public Lightning::ILightningObject
 {
 public:
-  LightningDeclareType(Object, TypeCopyMode::ReferenceType);
+  LightningDeclareType(Object, Lightning::TypeCopyMode::ReferenceType);
 
   OverloadedNew();
 

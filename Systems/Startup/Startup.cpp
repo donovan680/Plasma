@@ -46,7 +46,7 @@ void PlasmaStartup::InitializeLibraries(PlasmaStartupSettings& settings)
   Lightning::Module module;
   mState = module.Link();
   
-#if !defined(PlasmaDebug) && !defined(PLATFORM_EMSCRIPTEN)
+#if !defined(PlasmaDebug) && !defined(PlasmaTargetOsEmscripten)
   mState->SetTimeout(5);
 #endif
 

@@ -10,7 +10,7 @@
 #include "Platform/PlatformStandard.hpp"
 #include "Meta/MetaStandard.hpp"
 
-#include "Lightning/Lightning.hpp"
+#include "Lightning/Precompiled.hpp"
 using namespace Lightning;
 
 namespace Plasma

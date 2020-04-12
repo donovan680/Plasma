@@ -13,6 +13,9 @@ namespace Plasma
 {
 
 class GameSession;
+class Cog;
+class Space;
+class CogInitializer;
 class Composite;
 class OsWindowEvent;
 class Composite;
@@ -42,7 +45,7 @@ typedef ArrayMultiMap<String, Space*> SpaceMap;
 class GameEvent : public Event
 {
 public:
-  LightningDeclareType(GameEvent, TypeCopyMode::ReferenceType);
+  LightningDeclareType(GameEvent, Lightning::TypeCopyMode::ReferenceType);
 
   GameEvent();
 
@@ -63,7 +66,7 @@ public:
 class GameSession : public Cog
 {
 public:
-  LightningDeclareType(GameSession, TypeCopyMode::ReferenceType);
+  LightningDeclareType(GameSession, Lightning::TypeCopyMode::ReferenceType);
 
   GameSession();
   ~GameSession();
@@ -157,7 +160,7 @@ public:
   void InternalRemove(Space* space);
 
   // Main widget holding the game
-  HandleOf<GameWidget> mGameWidget;
+  Lightning::HandleOf<GameWidget> mGameWidget;
 
   /// Os Window holding the game. This is used to pass on Os events to the user,
   /// set resolution, set fullscreen, etc...

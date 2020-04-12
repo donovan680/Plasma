@@ -4,7 +4,6 @@
 \**************************************************************/
 
 #include "Precompiled.hpp"
-#include "Lightning.hpp"
 
 namespace Lightning
 {

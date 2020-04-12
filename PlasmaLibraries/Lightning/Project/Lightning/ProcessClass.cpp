@@ -3,7 +3,7 @@
 * Copyright 2015, DigiPen Institute of Technology
 \**************************************************************/
 
-#include "Lightning.hpp"
+#include "Precompiled.hpp"
 
 namespace Lightning
 {

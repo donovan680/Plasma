@@ -565,7 +565,7 @@ bool LightningShaderGenerator::BuildShaders(ShaderSet& shaders, HashMap<String, 
   PlasmaLightningShaderGlslBackend* backend = new PlasmaLightningShaderGlslBackend();
   pipelineDescription.mBackend = backend;
 
-#ifdef PLATFORM_EMSCRIPTEN
+#ifdef PlasmaTargetOsEmscripten
   backend->mTargetVersion = 300;
   backend->mTargetGlslEs = true;
 #endif

@@ -49,6 +49,12 @@ public:
 
 }//namespace Plasma
 
+#include <Utility\MaxSizeof.hpp>
+
+static const constexpr size_t MaxPrimtiveSize = MaxSizeof4(void*, uintptr_t, uintmax_t, double);
+typedef double MaxAlignmentType;
+#define ZeroAlignCount(SizeBytes) ((SizeBytes + sizeof(::MaxAlignmentType) - 1) / sizeof(::MaxAlignmentType))
+
 #include "Utility/Standard.hpp"
 #include "Utility/Typedefs.hpp"
 #include "Time.hpp"
@@ -107,7 +113,6 @@ public:
 #include "Utility/IdSequence.hpp"
 #include "Utility/TextStream.hpp"
 #include "Utility/HalfFloat.hpp"
-#include "Utility/MaxSizeof.hpp"
 #include "VirtualAny.hpp"
 #include "Utility/IdStore.hpp"
 #include "Utility/ItemCache.hpp"

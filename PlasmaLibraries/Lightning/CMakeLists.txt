@@ -5,6 +5,10 @@
 add_library(Lightning "")
 
 set_target_properties(Lightning PROPERTIES FOLDER "PlasmaLibraries")
+
+plasma_setup_library(Lightning ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Lightning ${CMAKE_CURRENT_LIST_DIR})
+
 target_sources(Lightning
     PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/Project/Lightning/Any.cpp
@@ -138,35 +142,19 @@ target_sources(Lightning
     ${CMAKE_CURRENT_LIST_DIR}/Project/Lightning/WebSocket.hpp
     ${CMAKE_CURRENT_LIST_DIR}/Project/Lightning/Wrapper.cpp
     ${CMAKE_CURRENT_LIST_DIR}/Project/Lightning/Wrapper.hpp
-    ${CMAKE_CURRENT_LIST_DIR}/Project/Lightning/Lightning.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/Project/Lightning/Lightning.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/Precompiled.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/Precompiled.hpp
 )
 
 target_include_directories(Lightning
-PUBLIC
+    PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}/../Lightning/Project
     ${CMAKE_CURRENT_LIST_DIR}/../Lightning/Project/Lightning
-    ${VLD_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Lightning
+plasma_target_includes(Lightning
                     PUBLIC
                     Common
-                    ${VLD_LIBRARIES}
 )
-
-plasma_multitarget_output_settings(
-    Lightning
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Lightning.hpp"
-    PRECOMPILED_SOURCE_NAME "Lightning.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Lightning "")

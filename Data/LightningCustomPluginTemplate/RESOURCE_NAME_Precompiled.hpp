@@ -1,7 +1,7 @@
 #pragma once
 // We use precompiled headers to support the fastest possible compilation
 #define PlasmaImportDll
-#include "Lightning.hpp"
+#include "Precompiled.hpp"
 #include "Core.hpp"
 #include "PlasmaEngine.hpp"
 

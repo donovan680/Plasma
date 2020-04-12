@@ -2,7 +2,7 @@
 * Author: Trevor Sundberg
 \**************************************************************/
 
-#include "Lightning.hpp"
+#include "Precompiled.hpp"
 
 namespace Lightning
 {

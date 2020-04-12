@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#if defined(PLATFORM_EMSCRIPTEN)
+#if defined(PlasmaTargetOsEmscripten)
 typedef size_t rsize_t;
 typedef int errno_t;
 

@@ -6,7 +6,7 @@
 
 //#define PlasmaExtraGlDebug
 
-#ifdef PLATFORM_EMSCRIPTEN
+#ifdef PlasmaTargetOsEmscripten
 #define PlasmaWebgl
 #else
 #define PlasmaGl

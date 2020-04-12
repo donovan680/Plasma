@@ -6,6 +6,9 @@ add_library(Geometry "")
 
 set_target_properties(Geometry PROPERTIES FOLDER "PlasmaLibraries")
 
+plasma_setup_library(Geometry ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Geometry ${CMAKE_CURRENT_LIST_DIR})
+
 target_sources(Geometry
 PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/Aabb.cpp
@@ -80,28 +83,14 @@ PRIVATE
 )
 
 target_include_directories(Geometry
-PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR}
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Geometry
-                    PUBLIC
-                    Common
-                    Lightning
-) 
-
-plasma_multitarget_output_settings(
-    Geometry
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
+plasma_target_includes(Geometry
+  PUBLIC
+    Common
+    Lightning
 )
 
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Geometry "")

@@ -2,6 +2,9 @@ add_library(LightningShaders "")
 
 set_target_properties(LightningShaders PROPERTIES FOLDER "Extensions")
 
+plasma_setup_library(LightningShaders ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(LightningShaders ${CMAKE_CURRENT_LIST_DIR})
+
 target_sources(LightningShaders
   PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/ArithmeticInstructions.cpp
@@ -92,41 +95,12 @@ target_sources(LightningShaders
     ${CMAKE_CURRENT_LIST_DIR}/LightningSpirVSettings.hpp
 )
 
-target_include_directories(LightningShaders
-PUBLIC 
-    ${CMAKE_CURRENT_LIST_DIR}/
-    ${CMAKE_CURRENT_LIST_DIR}/../
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SPIRV-Cross
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles/external
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles/external/SPIRV-Headers/include
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles/include
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles/include/spirv-tools
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles/build
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles/tools
-    ${CMAKE_CURRENT_LIST_DIR}/../SpirV/SpirVFiles/source
+plasma_target_includes(LightningShaders
+  PUBLIC
+    Common
+    Geometry
+    Lightning
+    SpirvHeaders
+    SpirvTools
+    SpirvCross
 )
-
-target_link_libraries(LightningShaders
-                PRIVATE
-                Common
-                Geometry
-                Lightning
-                SPIRV-Cross
-                SPIRV-Tools-opt
-) 
-
-plasma_multitarget_output_settings(
-    LightningShaders
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} LightningShaders "")

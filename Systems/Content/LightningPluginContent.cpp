@@ -81,23 +81,11 @@ String LightningPluginBuilder::GetSharedLibraryPlatformName()
   //builder.Append(GetConfigurationString());
   //builder.Append('-');
 
-  // Append the operating system name (or some grouped name for all OSes that support this shared library)
-#if defined(PLATFORM_WINDOWS)
-  builder.Append("Windows_NT");
-#else
-  builder.Append("Unknown");
-#endif
-
+  builder.Append(PlasmaTargetOsName);
   builder.Append('-');
-  
+
   // Append the target machine architecture
-#if defined(PLATFORM_WINDOWS)
-  #if defined(PLATFORM_32)
-    builder.Append("x86");
-  #else
-    builder.Append("x64");
-  #endif
-#endif
+  builder.Append(PlasmaArchitectureName);
   String pluginFileName = builder.ToString();
   return pluginFileName;
 }

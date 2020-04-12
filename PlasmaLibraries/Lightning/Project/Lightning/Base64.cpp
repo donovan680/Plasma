@@ -5,7 +5,7 @@
 
 // Note: This code is based on libb64's public domain code
 
-#include "Lightning.hpp"
+#include "Precompiled.hpp"
 
 namespace Lightning
 {

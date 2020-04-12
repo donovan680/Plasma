@@ -127,19 +127,4 @@ target_link_libraries(Graphics
     Geometry
     LightningShaders
     ${FreetypeStatic}
-) 
-
-plasma_multitarget_output_settings(
-    Graphics
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
 )
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Graphics "")

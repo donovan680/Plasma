@@ -6,6 +6,9 @@ add_library(CodeTranslator "")
 
 set_target_properties(CodeTranslator PROPERTIES FOLDER "Extensions")
 
+PLASMA_setup_library(CodeTranslator ${CMAKE_CURRENT_LIST_DIR} TRUE)
+PLASMA_use_precompiled_header(CodeTranslator ${CMAKE_CURRENT_LIST_DIR})
+
 target_sources(CodeTranslator
   PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/CodeSplitWindow.cpp
@@ -19,28 +22,14 @@ target_sources(CodeTranslator
   ${CMAKE_CURRENT_LIST_DIR}/ShaderTranslationDebugHelper.hpp
 )
 
-target_include_directories(CodeTranslator 
-PUBLIC 
+target_include_directories(CodeTranslator
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(CodeTranslator
-                PUBLIC
-                Engine
+plasma_target_includes(CodeTranslator
+  PUBLIC
+    Engine
+    LightningShaders
 )
-
-plasma_multitarget_output_settings(
-    CodeTranslator
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
-)
-
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} CodeTranslator "")

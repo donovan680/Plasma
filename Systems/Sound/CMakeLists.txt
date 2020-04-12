@@ -4,6 +4,9 @@
 ################################################################################
 add_library(Sound "")
 
+plasma_setup_library(Sound ${CMAKE_CURRENT_LIST_DIR} TRUE)
+plasma_use_precompiled_header(Sound ${CMAKE_CURRENT_LIST_DIR})
+
 set_target_properties(Sound PROPERTIES FOLDER "Systems")
 
 target_sources(Sound
@@ -77,30 +80,15 @@ target_sources(Sound
     ${CMAKE_CURRENT_LIST_DIR}/VolumeModifier.hpp
 )
 
-
-target_include_directories(Sound 
-PUBLIC 
+target_include_directories(Sound
+    PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/
     ${CMAKE_CURRENT_LIST_DIR}/../
 )
 
-target_link_libraries(Sound
-    PUBLIC
+plasma_target_includes(Sound
+  PUBLIC
     Common
     Geometry
-    ${OpusStatic}
-) 
-
-plasma_multitarget_output_settings(
-    Sound
-    CONFIGS ${supported_configs}
-    BASEPATH ${plasma_build_out}
-    PLATFORM ${platform}
-    CONFIG ${configuration}
-    BITS ${bit}
-    TOOLSET ${CMAKE_VS_PLATFORM_TOOLSET}
-    PRECOMPILED_HEADER_NAME "Precompiled.hpp"
-    PRECOMPILED_SOURCE_NAME "Precompiled.cpp"
-    TARGET_SUBFOLDER
+    Opus
 )
-
-plasma_source_group(${CMAKE_CURRENT_LIST_DIR} Sound "")

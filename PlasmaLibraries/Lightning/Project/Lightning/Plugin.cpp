@@ -3,7 +3,7 @@
 * Copyright 2016, DigiPen Institute of Technology
 \**************************************************************/
 
-#include "Lightning.hpp"
+#include "Precompiled.hpp"
 
 // Set this to true this to get asserts for plugin types and functions not linking
 static const bool LightningDebugPluginLinking = false;
@@ -1012,8 +1012,8 @@ namespace Lightning
       builder.WriteLineIndented();
       builder.WriteLineIndented();
     }
-
-    builder.WriteLineIndented("#if defined(COMPILER_MICROSOFT)");
+    
+    builder.WriteLineIndented("#if defined(PlasmaCompilerMsvc)");
     builder.WriteLineIndented("#pragma optimize(\"\", off)");
     builder.WriteLineIndented("#endif");
 

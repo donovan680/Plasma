@@ -6,6 +6,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
+#include "Cog.hpp"
+#include "Game.hpp"
+#include "Meta/Tags.hpp"
+#include "Space.hpp"
+#include "Transform.hpp"
+
 namespace Plasma
 {
 
@@ -42,7 +48,7 @@ class Component : public Object
 {
 public:
   /// Meta Initialization.
-  LightningDeclareType(Component, TypeCopyMode::ReferenceType);
+  LightningDeclareType(Component, Lightning::TypeCopyMode::ReferenceType);
 
   /// Component memory management.
   static Memory::Heap* sHeap;
@@ -105,10 +111,10 @@ public:
   virtual bool ShouldSerialize() {return true;}
 
   /// Component added to composition
-  virtual void ComponentAdded(BoundType* typeId, Component* component) {}
+  virtual void ComponentAdded(Lightning::BoundType* typeId, Component* component) {}
 
   /// Component removed from composition.
-  virtual void ComponentRemoved(BoundType* typeId, Component* component) {}
+  virtual void ComponentRemoved(Lightning::BoundType* typeId, Component* component) {}
 
   ///Base debug draw for a component. Special for the each type of component.
   virtual void DebugDraw() {}
@@ -140,20 +146,20 @@ private:
 class ComponentHandleData : public CogHandleData
 {
 public:
-  BoundType* mComponentType;
+    Lightning::BoundType* mComponentType;
 };
 
-class ComponentHandleManager : public HandleManager
+class ComponentHandleManager : public Lightning::HandleManager
 {
 public:
-  ComponentHandleManager(ExecutableState* state) : HandleManager(state) {}
+  ComponentHandleManager(Lightning::ExecutableState* state) : HandleManager(state) {}
 
   // HandleManager interface
-  void Allocate(BoundType* type, Handle& handleToInitialize, size_t customFlags) override;
-  void ObjectToHandle(const byte* object, BoundType* type, Handle& handleToInitialize) override;
-  byte* HandleToObject(const Handle& handle) override;
-  bool CanDelete(const Handle& handle) override;
-  void Delete(const Handle& handle) override;
+  void Allocate(Lightning::BoundType* type, Lightning::Handle& handleToInitialize, size_t customFlags) override;
+  void ObjectToHandle(const byte* object, Lightning::BoundType* type, Lightning::Handle& handleToInitialize) override;
+  byte* HandleToObject(const Lightning::Handle& handle) override;
+  bool CanDelete(const Lightning::Handle& handle) override;
+  void Delete(const Lightning::Handle& handle) override;
 };
 
 //--------------------------------------------------------------------------------- Component Handle
@@ -170,7 +176,7 @@ public:
 
   void operator=(Cog* rhs)
   {
-    *this = rhs->has(ComponentType);
+    *this = rhs->has(Lightnging::ComponentType);
   }
 
   // Our = operator with Cog overload hid the base operator=

@@ -8,6 +8,10 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
+#include "Component.hpp"
+#include "Content/ContentLibrary.hpp"
+#include "ResourceLibrary.hpp"
+#include "CommonHandleManagers.hpp"
 
 namespace Plasma
 {
@@ -25,7 +29,7 @@ namespace Events
 class ProjectSettings : public Component
 {
 public:
-  LightningDeclareType(ProjectSettings, TypeCopyMode::ReferenceType);
+  LightningDeclareType(ProjectSettings, Lightning::TypeCopyMode::ReferenceType);
 
   /// Constructor / Destructor.
   ProjectSettings();
@@ -112,7 +116,7 @@ private:
 class ContentLibraryReference : public SafeId32Object
 {
 public:
-  LightningDeclareType(ContentLibraryReference, TypeCopyMode::ReferenceType);
+  LightningDeclareType(ContentLibraryReference, Lightning::TypeCopyMode::ReferenceType);
 
   void Serialize(Serializer& stream);
   void SetDefaults() {}
@@ -125,7 +129,7 @@ public:
 class SharedContent : public Component
 {
 public:
-  LightningDeclareType(SharedContent, TypeCopyMode::ReferenceType);
+  LightningDeclareType(SharedContent, Lightning::TypeCopyMode::ReferenceType);
 
   void Serialize(Serializer& stream) override;
 
